@@ -1,0 +1,4823 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>보닥터(Bodoctor) — AI 보험 진단·상담 비서</title>
+
+<!-- ===== SEO ===== -->
+<meta name="description" content="보닥터(Bodoctor)는 AI가 내 보험 가입내역을 진단해 점수·절감액·보장공백·확인필요 항목을 알려주고 전문가 상담까지 연결하는 보험 AI 서비스입니다. 보닥터에서 무료로 내 보험을 진단받아 보세요.">
+<meta name="keywords" content="보닥터, Bodoctor, 보험 AI, 보험 진단, AI 보험, 보험 상담, 보험료 절감, 보장 분석, 보험 점수">
+<meta name="author" content="보닥터(Bodoctor)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.bodoctor.com/">
+<!-- 네이버 서치어드바이저 소유확인 -->
+<meta name="naver-site-verification" content="817d73ea67955a28c29eebf6f0d93744e7363d9e" />
+
+<!-- ===== Open Graph (카카오/페이스북 공유) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="보닥터(Bodoctor)">
+<meta property="og:title" content="보닥터(Bodoctor) — AI 보험 진단·상담 비서">
+<meta property="og:description" content="AI가 내 보험을 진단해 점수·절감액·보장공백을 알려드려요. 보닥터에서 무료로 진단받아 보세요.">
+<meta property="og:url" content="https://www.bodoctor.com/">
+<meta property="og:image" content="https://www.bodoctor.com/icon-512.png">
+<meta property="og:locale" content="ko_KR">
+
+<!-- ===== Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="보닥터(Bodoctor) — AI 보험 진단·상담 비서">
+<meta name="twitter:description" content="AI가 내 보험을 진단해 점수·절감액·보장공백을 알려드려요. 보닥터에서 무료로 진단받아 보세요.">
+<meta name="twitter:image" content="https://www.bodoctor.com/icon-512.png">
+
+<!-- ===== 구조화 데이터 (검색엔진용) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "보닥터",
+  "alternateName": "Bodoctor",
+  "url": "https://www.bodoctor.com/",
+  "logo": "https://www.bodoctor.com/icon-512.png",
+  "description": "AI 보험 진단·상담 서비스"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "보닥터(Bodoctor)",
+  "url": "https://www.bodoctor.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.bodoctor.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- PWA (앱 설치) -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6366f1">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="보닥터">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- 카카오 JavaScript SDK (공유 기능) -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f7fa;
+  --surface: #ffffff;
+  --border: #ececf3;
+  --text: #1c1c2c;
+  --text2: #6c6c84;
+  --text3: #a3a3b8;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-soft: #eef2ff;
+  --accent-green: #10b981;
+  --kakao: #FEE500;
+  --kakao-text: #191919;
+  --red: #ef4444;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 14px rgba(15,23,42,0.06);
+  --shadow-lg: 0 10px 30px rgba(15,23,42,0.08);
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --tabbar-h: 64px;
+  --kakao-h: 60px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--bg); }
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: calc(var(--tabbar-h) + var(--kakao-h) + env(safe-area-inset-bottom));
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ===== 헤더 ===== */
+header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--text); /* '닥' = 검정 */
+}
+/* '보'와 '터' (받침 없는 글자) 시각 보정 — 받침 있는 '닥'과 같은 크기로 보이게 */
+.logo .accent,
+.logo .adj {
+  font-size: 1.12em;
+  font-weight: 900;
+  letter-spacing: -1px;
+  display: inline-block;
+}
+.logo .accent { color: var(--primary); /* '보' = 보라 */ }
+.logo .adj { color: var(--text); /* '터' = 검정 */ }
+.btn-expert {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: white;
+  background: var(--primary);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.28);
+  transition: all 0.15s;
+}
+.btn-expert:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-expert .dot {
+  width: 6px; height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+  50% { box-shadow: 0 0 0 4px rgba(74,222,128,0); }
+}
+
+/* ===== 히어로 ===== */
+.hero {
+  padding: 24px 0 16px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.hero h1 .accent { color: var(--primary); }
+.hero p {
+  font-size: 13.5px;
+  color: var(--text2);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.55;
+}
+
+/* ===== 채팅 카드 (상단) ===== */
+.chat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-md);
+}
+.chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1.5px solid var(--accent-green);
+  border-radius: 999px;
+  padding: 6px 6px 6px 18px;
+  transition: all 0.15s;
+}
+.chat-input-row:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+.chat-input-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14.5px;
+  font-family: inherit;
+  padding: 10px 4px;
+  outline: none;
+  color: var(--text);
+  min-width: 0;
+}
+.chat-input-row input::placeholder { color: var(--text3); }
+.btn-send {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.15s;
+}
+.btn-send:hover:not(:disabled) { background: var(--primary-hover); }
+.btn-send:disabled { background: var(--text3); cursor: not-allowed; }
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.messages:empty { display: none; margin-top: 0; }
+.bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 92%;
+}
+.bubble.user {
+  background: var(--primary-soft);
+  color: var(--text);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.bubble.ai {
+  background: var(--bg-soft);
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.bubble.ai h1, .bubble.ai h2, .bubble.ai h3 { font-size: 15px; font-weight: 700; margin: 8px 0 4px; }
+.bubble.ai strong { font-weight: 700; }
+.bubble.ai ul, .bubble.ai ol { margin: 6px 0 6px 20px; }
+.bubble.ai li { margin: 2px 0; }
+.bubble.ai code { background: #fff; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.bubble.loading { color: var(--text3); font-style: italic; }
+.bubble.loading::after { content: '...'; animation: dots 1.2s infinite; }
+@keyframes dots { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+/* ===== 2개 액션 카드 (큰 사이즈) ===== */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.action {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: var(--shadow-sm);
+}
+.action:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.15);
+}
+.action .icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.action.a-green .icon-wrap { background: #d1fae5; }
+.action .lbl {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.action .sub {
+  font-size: 11.5px;
+  color: var(--text2);
+  line-height: 1.4;
+  margin-top: -8px;
+}
+
+/* ===== 내 보험 진단 히어로 카드 ===== */
+.diag-hero {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  border: 1px solid #e0e7ff;
+  border-radius: 20px;
+  padding: 18px 18px 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.15s;
+}
+.diag-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(99,102,241,0.18);
+}
+.diag-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.diag-hero-text { flex: 1; min-width: 0; }
+.diag-hero-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+.diag-hero-stat {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-top: 7px;
+}
+.diag-hero-stat b { color: var(--primary); font-weight: 800; }
+.diag-hero-illust {
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+}
+.diag-hero-illust svg { width: 100%; height: 100%; display: block; }
+.diag-hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+/* ===== 추천 질문 드롭다운 ===== */
+.suggest {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.suggest-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+.suggest-head .ico { color: var(--text3); font-size: 16px; }
+.suggest-head .txt { flex: 1; font-size: 14px; color: var(--text); font-weight: 500; }
+.suggest-head .arrow { color: var(--text3); transition: transform 0.2s; font-size: 14px; }
+.suggest.open .suggest-head .arrow { transform: rotate(180deg); }
+.suggest-body { display: none; border-top: 1px solid var(--border); padding: 8px 0; }
+.suggest.open .suggest-body { display: block; }
+.suggest-item {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none;
+  padding: 11px 16px;
+  font-size: 13.5px; color: var(--text);
+  font-family: inherit;
+}
+.suggest-item:hover { background: var(--bg-soft); color: var(--primary); }
+.suggest-item.answered { color: var(--primary); font-weight: 700; background: var(--bg-soft); }
+.suggest-answer {
+  margin: 0 16px 8px;
+  padding: 11px 14px;
+  background: var(--bg-soft);
+  border-left: 2.5px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+}
+.suggest-answer p { margin: 0 0 6px; }
+.suggest-answer p:last-child { margin-bottom: 0; }
+.suggest-answer ul, .suggest-answer ol { margin: 4px 0 6px 18px; }
+.suggest-answer li { margin: 2px 0; }
+.suggest-answer strong { color: var(--text); }
+.suggest-answer .sa-loading { color: var(--text3); font-style: italic; }
+.suggest-answer .sa-error { color: #dc2626; }
+.suggest-answer .sa-expert {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 9px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: none;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+.suggest-answer .sa-expert:hover { background: var(--primary); color: #fff; }
+
+/* ===== Pill CTA (전문가 상담) ===== */
+.big-cta-wrap {
+  text-align: center;
+  margin: 16px 0;
+  padding: 0 4px;
+}
+.big-cta-wrap .hint {
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+.big-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(99,102,241,0.32);
+  transition: all 0.15s;
+}
+.big-cta:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+/* ===== 최근 보험 소식 ===== */
+.news { margin-bottom: 16px; }
+.news-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px; padding: 0 4px;
+}
+.news-title {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.news-more {
+  background: none; border: none;
+  font-size: 12px; color: var(--text2);
+}
+.news-list { display: flex; flex-direction: column; gap: 6px; }
+.news-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px;
+  background: var(--bg-soft);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%; text-align: left;
+}
+.news-item:hover {
+  background: white;
+  border-color: var(--primary-soft);
+  box-shadow: var(--shadow-sm);
+}
+.news-item .num {
+  width: 20px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.news-item .ttl {
+  flex: 1;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ===== AI 보험 진단 보고서 (시각화 미리보기) ===== */
+.report { margin-bottom: 16px; }
+.report-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px 18px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.report-sample-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, var(--primary), #818cf8);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.4px;
+  margin-bottom: 12px;
+}
+.report-card::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.score-block {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 14px;
+}
+.score-label {
+  font-size: 11.5px;
+  color: var(--text2);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.score-num {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.score-num span {
+  font-size: 18px;
+  color: var(--text3);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.score-bar {
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0 8px;
+}
+.score-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+  border-radius: 999px;
+  width: 0;
+  animation: scoreFill 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes scoreFill {
+  to { width: 78%; }
+}
+.score-comment {
+  font-size: 12.5px;
+  color: #d97706;
+  font-weight: 700;
+}
+
+/* ===== 종합 점수 원형(도넛) 그래프 ===== */
+.score-ring {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  margin: 8px auto 10px;
+}
+.score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); display: block; }
+.score-ring .ring-bg { fill: none; stroke: #eef0f5; stroke-width: 11; }
+.score-ring .ring-fg {
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke: #f59e0b;
+  stroke-dasharray: 327;
+  stroke-dashoffset: 327;
+}
+.score-ring.animate .ring-fg { animation: ringFill 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes ringFill { to { stroke-dashoffset: 72; } }  /* 78점 기준 */
+.score-ring .ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-ring .ring-num {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.score-ring .ring-deno { font-size: 13px; color: var(--text3); font-weight: 700; margin-top: 3px; }
+
+/* ===== 월 보험료 절감액 박스 (점수 바로 밑, 가장 강조) ===== */
+.savings-box {
+  margin: 14px 0 4px;
+  padding: 16px 16px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%);
+  border: 1.5px solid #a7f3d0;
+  text-align: center;
+}
+.savings-box.flat {
+  background: var(--bg-soft);
+  border-color: var(--border);
+}
+.savings-box .savings-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #047857;
+  margin-bottom: 4px;
+}
+.savings-box.flat .savings-label { color: var(--text2); }
+.savings-box .savings-amount {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: #059669;
+  line-height: 1.1;
+}
+.savings-box.flat .savings-amount { color: var(--text); }
+.savings-box .savings-amount span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0;
+  margin-left: 2px;
+}
+.savings-box .savings-year {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #059669;
+  margin-top: 2px;
+}
+.savings-box.flat .savings-year { color: var(--text2); }
+.savings-box .savings-basis {
+  font-size: 11.5px;
+  color: var(--text2);
+  line-height: 1.45;
+  margin-top: 8px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+.savings-box .join-list {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #a7f3d0;
+  text-align: left;
+}
+.savings-box.flat .join-list { border-top-color: var(--border); }
+.savings-box .join-list-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+.savings-box .join-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  padding: 3px 0;
+}
+.savings-box .join-name { color: var(--text); font-weight: 500; }
+.savings-box .join-prem { color: var(--text2); font-weight: 600; white-space: nowrap; }
+
+.report-section { padding: 14px 0 4px; }
+.report-section + .report-section {
+  border-top: 1px dashed var(--border);
+}
+.report-section-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+.bar-label {
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 500;
+}
+.bar-track {
+  height: 7px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  width: 0;
+  animation: barFill 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); --target: 95%; }
+.bar-fill.yellow { background: linear-gradient(90deg, #fbbf24, #f59e0b); --target: 55%; }
+.bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); --target: 30%; }
+.bar-fill.green-2 { background: linear-gradient(90deg, #10b981, #34d399); --target: 80%; }
+.bar-fill.yellow-2 { background: linear-gradient(90deg, #fbbf24, #f59e0b); --target: 50%; }
+@keyframes barFill { to { width: var(--target); } }
+.bar-val {
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+.bar-val.green { color: #059669; }
+.bar-val.yellow { color: #d97706; }
+.bar-val.red { color: #dc2626; }
+
+.ins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ins-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--bg-soft);
+  border-radius: 9px;
+}
+.ins-row .ins-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  white-space: nowrap;
+}
+.ins-row .ins-tag.cancer { background: #fee2e2; color: #dc2626; }
+.ins-row .ins-tag.health { background: #dbeafe; color: #1d4ed8; }
+.ins-row .ins-tag.driver { background: #fef3c7; color: #b45309; }
+.ins-row .ins-tag.kid { background: #d1fae5; color: #059669; }
+.ins-row .ins-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.ins-row .ins-prem {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.report-alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.report-alert {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #9a3412;
+  line-height: 1.45;
+  font-weight: 500;
+}
+.report-alert.red {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+.report-alert.tip {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+.report-alert .ico { flex-shrink: 0; font-size: 13px; }
+
+.report-cta {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-top: 12px;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.28);
+  transition: all 0.15s;
+}
+.report-cta:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* 보고서 안 2개 액션 버튼 (부족한 보장 / 보험료 절감) */
+.report-action-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+.report-action-btn {
+  background: white;
+  border: 1.5px solid;
+  border-radius: 14px;
+  padding: 14px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.report-action-btn .ico { font-size: 22px; line-height: 1; }
+.report-action-btn .lbl { font-size: 13px; letter-spacing: -0.2px; }
+.report-action-btn .lock {
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.report-action-btn.fill {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+.report-action-btn.fill:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+}
+.report-action-btn.save {
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+.report-action-btn.save:hover {
+  background: #f0fdf4;
+  border-color: #10b981;
+  transform: translateY(-1px);
+}
+
+/* ===== 안전 안내 ===== */
+.safety {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.safety .ico { font-size: 14px; flex-shrink: 0; }
+.safety p { font-size: 11.5px; color: #92400e; line-height: 1.5; }
+
+/* ===== 카카오 시작 버튼 (탭바 위 sticky) ===== */
+.kakao-cta-wrap {
+  position: fixed;
+  bottom: var(--tabbar-h);
+  left: 0; right: 0;
+  background: var(--bg);
+  padding: 10px 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 39;
+  height: var(--kakao-h);
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.btn-kakao {
+  width: 100%;
+  background: var(--kakao);
+  color: var(--kakao-text);
+  border: none;
+  border-radius: 14px;
+  padding: 13px;
+  font-size: 14.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(254,229,0,0.4);
+  transition: all 0.15s;
+}
+.btn-kakao:hover {
+  background: #ffd900;
+  transform: translateY(-1px);
+}
+.btn-kakao .ico {
+  font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ===== 홈 플로팅 버튼 (불필요한 보험료 확인) ===== */
+.float-check {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: calc(var(--tabbar-h) + var(--kakao-h) + 12px);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 14px;
+  z-index: 38;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.float-check[hidden] { display: none; }
+body.logged-in .float-check { bottom: calc(var(--tabbar-h) + 12px); }
+/* 결과창 플로팅 '점수 올리기' 바 — 분석 결과 동적 표시 */
+#floatScore .fs-inner { width: 100%; display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%); color: #fff;
+  border-radius: 16px; padding: 12px 16px; box-shadow: 0 8px 22px rgba(99,102,241,0.45);
+  transition: all 0.15s; }
+#floatScore:hover .fs-inner { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(99,102,241,0.5); }
+#floatScore .fs-txt { text-align: left; line-height: 1.25; min-width: 0; }
+#floatScore .fs-a { display: block; font-size: 11.5px; color: #dbe1ff; font-weight: 700; }
+#floatScore .fs-b { display: block; font-size: 14.5px; font-weight: 900; margin-top: 2px; }
+#floatScore .fs-go { margin-left: auto; background: #fff; color: #4338ca; border-radius: 11px;
+  padding: 10px 14px; font-size: 13px; font-weight: 900; white-space: nowrap; }
+.float-check-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: #fff;
+  border-radius: 999px;
+  padding: 13px 16px;
+  box-shadow: 0 8px 22px rgba(99,102,241,0.42);
+  transition: all 0.15s;
+}
+.float-check:hover .float-check-inner { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(99,102,241,0.5); }
+.float-check .fc-badge {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800;
+}
+.float-check .fc-txt {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-align: left;
+  line-height: 1.3;
+}
+.float-check .fc-illust { flex-shrink: 0; width: 30px; height: 30px; }
+.float-check .fc-illust svg { width: 100%; height: 100%; display: block; }
+
+/* ===== 불필요 보험료 2지선다 모달 ===== */
+.check-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 14px;
+  margin-bottom: 11px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.check-choice:hover { border-color: var(--primary); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(99,102,241,0.14); }
+.check-choice.green:hover { border-color: #10b981; box-shadow: 0 6px 16px rgba(16,185,129,0.16); }
+.check-choice .cc-ico {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 23px;
+}
+.check-choice.green .cc-ico { background: #d1fae5; }
+.check-choice .cc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.check-choice .cc-body b { font-size: 15px; font-weight: 800; color: var(--text); }
+.check-choice .cc-body span { font-size: 12px; color: var(--text2); line-height: 1.4; }
+.check-choice .cc-arrow { flex-shrink: 0; color: var(--text3); font-size: 20px; }
+
+/* ===== 하단 탭바 ===== */
+.tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 40;
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+}
+.tab {
+  background: none; border: none;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 3px;
+  padding: 6px 2px;
+  color: var(--text3);
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.tab .tab-ico { font-size: 19px; }
+.tab.active { color: var(--primary); }
+.tab:hover { color: var(--primary); }
+
+/* PC 대응 */
+@media (min-width: 600px) {
+  body { background: #f3f4f6; }
+  .container, header, .tabbar, .kakao-cta-wrap { background: var(--bg); }
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===== 모달 (공용) ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.modal-overlay.active { display: flex; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.modal-card {
+  background: white;
+  border-radius: 24px 24px 0 0;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px 20px calc(24px + env(safe-area-inset-bottom));
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-card .handle {
+  width: 40px; height: 4px;
+  background: #d1d5db; border-radius: 2px;
+  margin: 0 auto 16px;
+}
+.modal-card .modal-head {
+  display: flex; justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+.modal-card h2 {
+  font-size: 19px; font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.modal-close {
+  background: #f3f4f6; border: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  font-size: 18px; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.modal-sub {
+  font-size: 13px; color: var(--text2);
+  margin-bottom: 18px; line-height: 1.55;
+}
+.form-group { margin-bottom: 12px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--text); margin-bottom: 6px;
+}
+.form-group label .req { color: var(--primary); }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: #f7f7fa;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  transition: all 0.15s;
+}
+.form-group input:focus, .form-group textarea:focus {
+  background: white;
+  border-color: var(--primary);
+}
+.form-group textarea { resize: vertical; min-height: 68px; }
+.form-divider {
+  display: flex; align-items: center; gap: 10px;
+  margin: 10px 0 14px;
+  font-size: 11.5px; color: var(--text2);
+  text-align: center;
+}
+.form-divider::before,
+.form-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--line);
+}
+.consent {
+  display: flex; gap: 8px; align-items: flex-start;
+  margin: 12px 0 16px;
+  font-size: 11.5px; color: var(--text2);
+  line-height: 1.5; cursor: pointer;
+}
+.consent input {
+  margin-top: 2px;
+  width: 16px; height: 16px;
+  accent-color: var(--primary);
+}
+.btn-submit {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 15px;
+  font-size: 15px; font-weight: 700;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.28);
+  transition: all 0.15s;
+}
+.btn-submit:hover:not(:disabled) { background: var(--primary-hover); }
+.btn-submit:disabled {
+  background: #cbd5e1; cursor: not-allowed; box-shadow: none;
+}
+.modal-success { text-align: center; padding: 28px 0 12px; }
+.modal-success .check { font-size: 48px; margin-bottom: 12px; }
+.modal-success h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+.modal-success p { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+/* ===== 진단 모달 (다단계) ===== */
+.diag-step[hidden] { display: none; }
+.diag-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.diag-option {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 14px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  gap: 12px;
+  row-gap: 4px;
+  transition: all 0.15s;
+}
+.diag-option:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+}
+.diag-option .opt-ico {
+  font-size: 26px;
+  grid-row: 1 / 3;
+}
+.diag-option .opt-ttl {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text);
+}
+.diag-option .opt-sub {
+  font-size: 11.5px;
+  color: var(--text2);
+  line-height: 1.4;
+}
+.btn-text-back {
+  background: none;
+  border: none;
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0 4px;
+  margin-top: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-text-back:hover { color: var(--primary); }
+.diag-select {
+  width: 100%;
+  background: #f7f7fa;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+}
+.diag-select:focus { background: white; border-color: var(--primary); }
+
+.spin-emoji {
+  display: inline-block;
+  animation: spinPulse 1.2s ease-in-out infinite;
+}
+@keyframes spinPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(15deg); }
+}
+
+/* 진단 모달 안 카카오 로그인 버튼 */
+.diag-kakao {
+  margin-top: 4px;
+  box-shadow: 0 4px 14px rgba(254,229,0,0.5);
+}
+.diag-kakao:hover {
+  box-shadow: 0 6px 18px rgba(254,229,0,0.6);
+}
+@media (min-width: 600px) {
+  .modal-overlay { align-items: center; }
+  .modal-card { border-radius: 24px; max-width: 440px; }
+}
+
+/* ===== 채팅 답변 하단 액션 (공유 / 전문가 매칭) ===== */
+.chat-actions {
+  display: flex;
+  gap: 7px;
+  align-self: flex-start;
+  flex-wrap: wrap;
+  margin: -4px 0 2px;
+  max-width: 92%;
+}
+.chat-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.chat-action-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.chat-action-btn.share { color: var(--text2); }
+.chat-action-btn.share:hover { border-color: var(--accent-green); color: var(--accent-green); }
+.chat-action-btn.match {
+  background: var(--primary-soft);
+  border-color: transparent;
+  color: var(--primary);
+}
+.chat-action-btn.match:hover { background: var(--primary); color: white; }
+.chat-action-btn.diag {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+.chat-action-btn.diag:hover { background: var(--primary-hover); color: white; }
+
+/* ===== 홈: 주변 사람 무료 분석 배너 ===== */
+.invite-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  border: 1px solid #e0e7ff;
+  border-radius: var(--radius-lg);
+  padding: 15px 16px;
+  margin-bottom: 16px;
+  text-align: left;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.invite-banner:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+.invite-banner .invite-ico {
+  font-size: 26px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: white;
+  border-radius: 13px;
+  flex-shrink: 0;
+}
+.invite-banner .invite-txt { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.invite-banner .invite-txt strong { font-size: 14.5px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
+.invite-banner .invite-txt .invite-sub { font-size: 11.5px; color: var(--text2); line-height: 1.4; }
+.invite-banner .invite-arrow { font-size: 20px; color: var(--primary); font-weight: 700; }
+
+/* ===== 결과 카드: 무료분석 / 결과공유 버튼 행 ===== */
+.report-share-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.report-action-btn.invite {
+  border-color: #ddd6fe;
+  color: var(--primary);
+}
+.report-action-btn.invite:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+.report-action-btn.shareres {
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+.report-action-btn.shareres:hover {
+  background: #f0fdf4;
+  border-color: var(--accent-green);
+  transform: translateY(-1px);
+}
+
+/* 로그인 단계: 아이디/비번 찾기 박스 */
+.diag-find-box {
+  background: var(--primary-soft);
+  border: 1px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 2px 0 12px;
+}
+.diag-find-head { font-size: 12.5px; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+.diag-find-guide { font-size: 11.5px; color: var(--text2); line-height: 1.55; }
+.diag-find-guide strong { color: var(--text); }
+.diag-find-btn {
+  display: inline-block;
+  margin-top: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: var(--primary);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+.diag-find-btn:hover { background: var(--primary-hover); }
+.find-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 9px; }
+.find-act-btn {
+  background: white;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.find-act-btn:hover { background: var(--primary); color: white; }
+.paste-tip {
+  margin-top: 8px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.paste-tip-text { font-size: 11.5px; color: var(--text2); line-height: 1.5; }
+.paste-tip-text strong { color: var(--text); }
+
+/* 비밀번호/아이디 조건 체크리스트 */
+.rule-list { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.rule-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11.5px; color: var(--text3); line-height: 1.35;
+  transition: color 0.15s;
+}
+.rule-item .chk {
+  flex-shrink: 0;
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid #d1d5db; background: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.rule-item.ok { color: var(--accent-green); }
+.rule-item.ok .chk { background: var(--accent-green); border-color: var(--accent-green); }
+.rule-item.ok .chk::after {
+  content: '✓'; color: #fff; font-size: 10px; font-weight: 800; line-height: 1;
+}
+
+/* 로그인 상태: 하단 '카카오로 3초만에 시작하기' 숨김 + 여백 정리 */
+body.logged-in .kakao-cta-wrap { display: none; }
+body.logged-in { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
+
+/* ===== 푸터 ===== */
+.site-footer {
+  margin: 20px -16px 0;
+  padding: 22px 20px 26px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.footer-link {
+  background: none; border: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  padding: 0;
+}
+.footer-link:hover { color: var(--primary); }
+.footer-divider { color: var(--text3); font-size: 12px; }
+.footer-company { font-size: 11px; color: var(--text3); line-height: 1.7; }
+.footer-company .footer-name { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 2px; }
+.footer-company a { color: var(--text2); text-decoration: none; }
+.footer-company .footer-copy { margin-top: 8px; color: var(--text3); }
+
+/* ===== 법적 문서 모달 본문 ===== */
+.legal-body {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.7;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.legal-body h3 { font-size: 13.5px; color: var(--text); font-weight: 700; margin: 16px 0 6px; }
+.legal-body h3:first-child { margin-top: 4px; }
+.legal-body p { margin-bottom: 8px; }
+.legal-body ul { margin: 4px 0 8px 18px; }
+.legal-body li { margin: 2px 0; }
+.legal-body table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; }
+.legal-body th, .legal-body td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; font-size: 11.5px; }
+.legal-body th { background: var(--bg-soft); color: var(--text); font-weight: 700; }
+.legal-updated { font-size: 11px; color: var(--text3); margin-top: 14px; }
+
+/* ===== 헤더 앱 설치 버튼 ===== */
+.header-actions { display: flex; align-items: center; gap: 7px; }
+.btn-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-soft);
+  border: 1px solid #e0e7ff;
+  border-radius: 999px;
+  padding: 7px 11px;
+  transition: all 0.15s;
+}
+.btn-install:hover { background: var(--primary); color: white; border-color: var(--primary); }
+.btn-install .ico { font-size: 13px; }
+@media (max-width: 360px) {
+  .btn-install { padding: 7px 9px; }
+}
+
+/* ===== iOS 설치 안내 스텝 ===== */
+.ios-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 6px 0 0; }
+.ios-steps li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text); }
+.ios-steps .num {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== 📊 AI 보고서 v2 (시안 이식 · .rpt2 스코프 · 앱 인디고) ===== */
+#reportCard.rpt2-host { background: transparent; border: none; box-shadow: none; padding: 0; border-radius: 0; overflow: hidden; }
+.rpt2 { --r-brand:#6366f1; --r-brand-soft:#eef2ff; --r-good:#13a463; --r-good-soft:#e6f7ef;
+  --r-danger:#e03131; --r-danger-soft:#ffe9e9; --r-amber:#f59f00; --r-line:#eef1f5; --r-ink:#16202e; --r-sub:#5b6b7e; color:var(--r-ink); }
+.rpt2 .r-eyebrow { font-size:12px; font-weight:800; letter-spacing:.05em; color:var(--r-sub); }
+.rpt2 .r-card { background:#fff; border-radius:18px; padding:18px 16px; box-shadow:0 1px 3px rgba(16,32,54,.05); margin-bottom:12px; }
+/* SCORE */
+.rpt2 .r-score { background:#fff; border-radius:18px; padding:20px 16px; box-shadow:0 1px 3px rgba(16,32,54,.05); margin-bottom:12px; }
+.rpt2 .r-score-top { display:flex; align-items:center; gap:16px; margin-top:10px; }
+.rpt2 .r-ring { position:relative; width:118px; height:118px; flex-shrink:0; }
+.rpt2 .r-ring svg { transform:rotate(-90deg); display:block; }
+.rpt2 .r-ring .ctr { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.rpt2 .r-ring .ctr .n { font-size:38px; font-weight:900; letter-spacing:-.03em; line-height:1; }
+.rpt2 .r-ring .ctr .m { font-size:11.5px; font-weight:700; color:var(--r-sub); margin-top:3px; }
+.rpt2 .r-score-meta { flex:1; min-width:0; }
+.rpt2 .r-score-meta .lab { font-size:12px; font-weight:800; color:var(--r-sub); }
+.rpt2 .r-goalpill { display:inline-flex; align-items:center; gap:6px; background:var(--r-good-soft); color:var(--r-good); font-size:13px; font-weight:800; border-radius:99px; padding:8px 13px; margin-top:9px; line-height:1.2; }
+.rpt2 .r-leg { display:flex; gap:14px; margin-top:12px; flex-wrap:wrap; }
+.rpt2 .r-leg span { font-size:11px; font-weight:700; color:var(--r-sub); display:flex; align-items:center; gap:5px; }
+.rpt2 .r-leg i { width:9px; height:9px; border-radius:3px; display:inline-block; }
+.rpt2 .r-diag { font-size:13px; color:#46566b; margin-top:16px; line-height:1.6; }
+.rpt2 .r-diag b { color:var(--r-ink); font-weight:800; }
+/* MONEY */
+.rpt2 .r-money { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.rpt2 .r-m { border-radius:16px; padding:15px 13px; }
+.rpt2 .r-m.save { background:var(--r-good-soft); }
+.rpt2 .r-m.gap { background:var(--r-danger-soft); }
+.rpt2 .r-m .k { font-size:11.5px; font-weight:800; }
+.rpt2 .r-m.save .k { color:var(--r-good); }
+.rpt2 .r-m.gap .k { color:var(--r-danger); }
+.rpt2 .r-m .big { font-size:21px; font-weight:900; margin:6px 0 2px; letter-spacing:-.02em; }
+.rpt2 .r-m .sm { font-size:11.5px; color:var(--r-sub); line-height:1.4; }
+.rpt2 .r-tip { background:var(--r-brand-soft); border-radius:12px; padding:12px 13px; font-size:12.5px; color:#3730a3; font-weight:600; margin-bottom:12px; }
+/* 보험료 진단 막대 비교 */
+.rpt2 .r-prem .r-bar-row { margin-top:14px; }
+.rpt2 .r-bar-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+.rpt2 .r-bar-lab { font-size:12.5px; font-weight:700; color:var(--r-sub); }
+.rpt2 .r-bar-pct { color:var(--r-good); font-weight:800; margin-left:3px; }
+.rpt2 .r-bar-num { font-size:17px; font-weight:900; color:var(--r-ink); letter-spacing:-.02em; }
+.rpt2 .r-bar-num.save { color:var(--r-good); }
+.rpt2 .r-bar-track { height:15px; background:#eef0f5; border-radius:99px; overflow:hidden; }
+.rpt2 .r-bar-fill { height:100%; border-radius:99px; min-width:6px; }
+.rpt2 .r-bar-fill.cur { background:linear-gradient(90deg,#6366f1,#818cf8); }
+.rpt2 .r-bar-fill.save { background:linear-gradient(90deg,#13a463,#34d399); }
+.rpt2 .r-prem-foot { margin-top:14px; font-size:12.5px; color:#0f6b46; background:var(--r-good-soft); border-radius:11px; padding:10px 13px; font-weight:600; }
+.rpt2 .r-prem-foot b { color:var(--r-good); font-weight:900; }
+.rpt2 .r-prem-basis { margin-top:8px; font-size:12px; color:var(--r-sub); }
+/* 보장 공백 목록 */
+.rpt2 .r-gap-row { display:flex; align-items:center; gap:11px; padding:11px 0; border-bottom:1px solid var(--r-line); }
+.rpt2 .r-gap-row:last-child { border-bottom:0; }
+.rpt2 .r-gap-ico { font-size:19px; width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:#f7f9fc; flex-shrink:0; }
+.rpt2 .r-gap-row.low .r-gap-ico { background:var(--r-danger-soft); }
+.rpt2 .r-gap-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.rpt2 .r-gap-body b { font-size:13.5px; font-weight:800; color:var(--r-ink); }
+.rpt2 .r-gap-body span { font-size:11.5px; color:var(--r-sub); }
+.rpt2 .r-gap-badge { font-size:10.5px; font-weight:800; border-radius:99px; padding:3px 9px; flex-shrink:0; }
+.rpt2 .r-gap-badge.low { background:var(--r-danger-soft); color:var(--r-danger); }
+.rpt2 .r-gap-badge.mid { background:#fff4e0; color:var(--r-amber); }
+.rpt2 .r-gap-none { font-size:13px; color:var(--r-good); font-weight:700; padding:4px 0; }
+/* POLICIES */
+.rpt2 .r-sec-h { display:flex; justify-content:space-between; align-items:baseline; margin:0 2px 10px; }
+.rpt2 .r-sec-h .t { font-size:15px; font-weight:800; }
+.rpt2 .r-sec-h .s { font-size:12px; color:var(--r-sub); font-weight:600; }
+.rpt2 .r-pol { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--r-line); gap:10px; }
+.rpt2 .r-pol:last-child { border-bottom:0; }
+.rpt2 .r-pol .nm { font-size:13px; font-weight:600; }
+.rpt2 .r-pol .nm small { display:block; color:var(--r-sub); font-weight:500; font-size:11.5px; }
+.rpt2 .r-pol .pr { font-size:13px; font-weight:800; white-space:nowrap; }
+/* CATEGORY */
+.rpt2 .r-cats { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+.rpt2 .r-cat { text-align:center; border-radius:13px; padding:11px 3px; background:#f7f9fc; }
+.rpt2 .r-cat .ic { font-size:18px; }
+.rpt2 .r-cat .nm { font-size:10.5px; font-weight:700; margin:5px 0 4px; }
+.rpt2 .r-badge { font-size:10px; font-weight:800; border-radius:99px; padding:3px 7px; display:inline-block; }
+.rpt2 .b-ok { background:var(--r-good-soft); color:var(--r-good); }
+.rpt2 .b-mid { background:#fff4e0; color:var(--r-amber); }
+.rpt2 .b-low { background:var(--r-danger-soft); color:var(--r-danger); }
+.rpt2 .r-cat.alert { outline:2px solid var(--r-danger); background:var(--r-danger-soft); }
+/* FINDINGS */
+.rpt2 .r-find { border:1px solid var(--r-line); border-radius:16px; padding:14px; margin-bottom:10px; }
+.rpt2 .r-find.crit { border-color:#ffc9c9; background:#fffafa; }
+.rpt2 .r-find .head { display:flex; gap:9px; align-items:flex-start; }
+.rpt2 .r-find .em { font-size:17px; line-height:1.2; }
+.rpt2 .r-find .ti { font-size:13.5px; font-weight:800; }
+.rpt2 .r-find .ds { font-size:12.5px; color:var(--r-sub); margin-top:3px; line-height:1.5; }
+.rpt2 .r-minicta { display:flex; align-items:center; justify-content:space-between; margin-top:11px; background:var(--r-brand); color:#fff; border-radius:11px; padding:10px 13px; font-size:12.5px; font-weight:800; cursor:pointer; border:0; width:100%; font-family:inherit; }
+.rpt2 .r-minicta .arr { font-weight:900; }
+/* TRUST */
+.rpt2 .r-trust { background:#f0f4fa; border-radius:16px; padding:15px; margin-bottom:12px; }
+.rpt2 .r-trust .q { font-size:13px; font-weight:800; margin-bottom:6px; }
+.rpt2 .r-trust .a { font-size:12.5px; color:var(--r-sub); line-height:1.5; }
+.rpt2 .r-trust .a b { color:var(--r-ink); }
+.rpt2 .r-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:11px; }
+.rpt2 .r-chip { font-size:11px; font-weight:700; background:#fff; border:1px solid var(--r-line); border-radius:99px; padding:5px 10px; color:#33485f; }
+/* MAIN CTA */
+.rpt2 .r-cta { background:linear-gradient(160deg,#6366f1,#4338ca); color:#fff; border-radius:18px; padding:18px 16px; margin-bottom:12px; }
+.rpt2 .r-cta .row { display:flex; align-items:center; gap:12px; }
+.rpt2 .r-cta .a { font-size:12px; color:#dbe1ff; font-weight:700; }
+.rpt2 .r-cta .b { font-size:15px; font-weight:900; margin-top:2px; }
+.rpt2 .r-cta .go { margin-left:auto; background:#fff; color:#4338ca; border:0; border-radius:12px; padding:13px 16px; font-size:14px; font-weight:900; cursor:pointer; white-space:nowrap; font-family:inherit; }
+
+/* ===== 내 보험 탭 뷰 ===== */
+.mi-wrap { padding: 16px 0 32px; }
+.mi-section { text-align: center; }
+.mi-title { font-size: 25px; font-weight: 800; letter-spacing: -0.6px; line-height: 1.32; margin: 14px 0 8px; color: var(--text); }
+.mi-sub { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+.mi-gauge { width: 210px; max-width: 72%; height: auto; margin: 6px auto 2px; display: block; }
+.mi-gauge-label { font-size: 13.5px; font-weight: 700; color: var(--text2); }
+.mi-gauge-score { font-size: 15px; font-weight: 700; color: var(--text); margin-top: 2px; }
+.mi-gauge-score b { color: var(--primary); font-size: 20px; }
+.mi-note { font-size: 11px; color: var(--text3); margin-top: 6px; }
+.mi-cta { width: 100%; max-width: 360px; margin: 20px auto 0; display: block; background: var(--primary); color: #fff; border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 800; font-family: inherit; cursor: pointer; box-shadow: var(--shadow-md); transition: background .15s; }
+.mi-cta:hover { background: var(--primary-hover); }
+.mi-cta.kakao { background: var(--kakao); color: var(--kakao-text); box-shadow: 0 4px 14px rgba(254,229,0,0.4); }
+/* 프로필 카드 */
+.mi-profile { display: flex; align-items: center; gap: 13px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 15px; margin: 6px 0 8px; box-shadow: var(--shadow-sm); }
+.mi-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; font-size: 23px; flex-shrink: 0; }
+.mi-profile-info { flex: 1; text-align: left; min-width: 0; }
+.mi-profile-name { font-size: 16px; font-weight: 800; color: var(--text); }
+.mi-profile-sub { font-size: 12px; color: var(--text2); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-gear { background: none; border: none; color: var(--text3); font-size: 12.5px; font-weight: 700; font-family: inherit; cursor: pointer; padding: 6px 4px; flex-shrink: 0; white-space: nowrap; }
+.mi-account { display: flex; gap: 8px; margin: 0 0 16px; }
+.mi-account[hidden] { display: none; }
+.mi-account button { flex: 1; border-radius: 10px; padding: 11px; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
+.mi-logout { background: var(--bg-soft); border: 1px solid var(--border); color: var(--text); }
+.mi-withdraw { background: #fff; border: 1px solid #ffd0d0; color: var(--red); }
+.mi-diag-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 22px 18px 24px; box-shadow: var(--shadow-sm); margin-top: 4px; }
+/* 내 보험 뷰에서는 하단 플로팅/카카오바 숨김 */
+body.view-mi .float-check, body.view-mi .kakao-cta-wrap { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ===== 헤더 ===== -->
+<header>
+  <div class="logo"><span class="accent">보</span>닥<span class="adj">터</span></div>
+  <div class="header-actions">
+    <button class="btn-expert" id="btnExpert">
+      <span class="dot"></span>
+      전문가 상담
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ===== 홈 뷰 ===== -->
+  <div id="homeView" style="padding-bottom:64px;">
+
+  <!-- ===== 홈 플로팅 버튼 (불필요한 보험료 확인) — 항상 노출 ===== -->
+  <button class="float-check" id="floatCheck" type="button">
+    <span class="float-check-inner">
+      <span class="fc-badge">?</span>
+      <span class="fc-txt">혹시 불필요하게 내고 있는 보험료는 없을까?</span>
+      <span class="fc-illust" aria-hidden="true">
+        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="19" r="13.5" fill="#ffffff"/>
+          <path d="M18 5.5 q1.6 -4 5.2 -3 q-0.4 3.7 -5.2 4.1z" fill="#ffd233"/>
+          <circle cx="13.4" cy="18" r="2.2" fill="#3a2e1a"/>
+          <circle cx="22.6" cy="18" r="2.2" fill="#3a2e1a"/>
+          <circle cx="14.2" cy="17.1" r="0.75" fill="#ffffff"/>
+          <circle cx="23.4" cy="17.1" r="0.75" fill="#ffffff"/>
+          <circle cx="9.6" cy="22.2" r="2.1" fill="#ffb3c1"/>
+          <circle cx="26.4" cy="22.2" r="2.1" fill="#ffb3c1"/>
+          <path d="M15.8 22 l2.2 2.6 l2.2 -2.6z" fill="#ff9f1c"/>
+        </svg>
+      </span>
+    </span>
+  </button>
+
+  <!-- ===== 결과창 플로팅 버튼 (점수 올리기) — 진단 후에만 노출, floatCheck 자리 대체 ===== -->
+  <button class="float-check" id="floatScore" type="button" hidden>
+    <span class="fs-inner">
+      <span class="fs-txt"><span class="fs-a">내 보장 점검</span><span class="fs-b">점수 올리기</span></span>
+      <span class="fs-go">점수 올리기 ›</span>
+    </span>
+  </button>
+
+  <!-- ===== 히어로 ===== -->
+  <section class="hero">
+    <h1>24시간 <span class="accent">내 보험 비서</span><br>AI가 다 정리해드려요</h1>
+    <p>복잡한 약관, 보장내역, 보험금 청구까지<br>보닥터에게 맡겨보세요</p>
+  </section>
+
+  <!-- ===== 내 보험 진단 히어로 카드 ===== -->
+  <button class="diag-hero" id="actionDiag">
+    <div class="diag-hero-top">
+      <div class="diag-hero-text">
+        <div class="diag-hero-title">내 보험 진단 🛡️</div>
+        <div class="diag-hero-stat">지난주에도 <b>2,138명</b>이<br>월 보험료 평균 <b>73,248원</b> 절감했어요</div>
+      </div>
+      <div class="diag-hero-illust" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="47" fill="#ffffff" fill-opacity="0.6"/>
+          <rect x="13" y="22" width="40" height="50" rx="5" fill="#ffffff" stroke="#dbe2ff" stroke-width="2"/>
+          <g stroke="#c7d2fe" stroke-width="2.6" stroke-linecap="round">
+            <line x1="19" y1="32" x2="46" y2="32"/>
+            <line x1="19" y1="40" x2="48" y2="40"/>
+            <line x1="19" y1="48" x2="40" y2="48"/>
+            <line x1="19" y1="56" x2="44" y2="56"/>
+          </g>
+          <ellipse cx="65" cy="62" rx="24" ry="22" fill="#ffd233"/>
+          <path d="M45 60 q-7 5 -1 14 q7 -3 8 -11z" fill="#ffc61a"/>
+          <g stroke="#ff9f1c" stroke-width="3" stroke-linecap="round">
+            <line x1="59" y1="83" x2="59" y2="90"/>
+            <line x1="71" y1="83" x2="71" y2="90"/>
+          </g>
+          <path d="M65 41 q1 -7 6 -6 q0 5 -6 7z" fill="#ffc61a"/>
+          <circle cx="71" cy="56" r="3.3" fill="#3a2e1a"/>
+          <circle cx="72.1" cy="54.9" r="1" fill="#ffffff"/>
+          <path d="M87 58 l9 3 l-9 4z" fill="#ff9f1c"/>
+          <circle cx="38" cy="44" r="16" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-width="4.5"/>
+          <line x1="49" y1="56" x2="60" y2="68" stroke="#6366f1" stroke-width="6.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <span class="diag-hero-cta">내 보험 진단 받기 →</span>
+  </button>
+
+  <!-- ===== AI 보험 진단 보고서 (샘플 미리보기) ===== -->
+  <section class="report">
+    <div class="news-head">
+      <div class="news-title">📊 AI 보험 진단 보고서</div>
+      <button class="news-more" id="reportSample">보고서 받아보기 ›</button>
+    </div>
+
+    <div class="report-card" id="reportCard">
+      <span class="report-sample-badge" id="reportBadge">SAMPLE</span>
+
+      <!-- 1. 종합 점수 (원형 그래프) -->
+      <div class="score-block">
+        <div class="score-label">내 보험 종합 점수</div>
+        <div class="score-ring animate">
+          <svg viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-fg" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-num">78</span>
+            <span class="ring-deno">/ 100</span>
+          </div>
+        </div>
+        <div class="score-comment">⚠️ 일부 보장이 부족합니다</div>
+      </div>
+
+      <!-- 1.5 월 보험료 절감액 (샘플) -->
+      <div class="savings-box">
+        <div class="savings-label">동일 보장 기준, 月 절감 가능액</div>
+        <div class="savings-amount">137,000<span>원 / 월</span></div>
+        <div class="savings-year">연 1,644,000원 아낄 수 있어요</div>
+        <div class="savings-basis">💡 수술비 중복 보장 정리 + 4세대→5세대 실손 전환 (예시)</div>
+      </div>
+
+      <!-- 2. 보장 분석 진행바 -->
+      <div class="report-section">
+        <div class="report-section-title">📋 보장 분석 (카테고리별)</div>
+        <div class="bar-row">
+          <span class="bar-label">실손의료비</span>
+          <div class="bar-track"><div class="bar-fill green"></div></div>
+          <span class="bar-val green">충분</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">암 진단비</span>
+          <div class="bar-track"><div class="bar-fill yellow"></div></div>
+          <span class="bar-val yellow">보완</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">뇌·심장</span>
+          <div class="bar-track"><div class="bar-fill red"></div></div>
+          <span class="bar-val red">부족</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">수술비</span>
+          <div class="bar-track"><div class="bar-fill green-2"></div></div>
+          <span class="bar-val green">충분</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">사망·장해</span>
+          <div class="bar-track"><div class="bar-fill yellow-2"></div></div>
+          <span class="bar-val yellow">보통</span>
+        </div>
+      </div>
+
+      <!-- 3. 확인 필요 / 개선 제안 -->
+      <div class="report-section">
+        <div class="report-section-title">🔍 확인 필요 항목 (3건)</div>
+        <div class="report-alert-list">
+          <div class="report-alert red">
+            <span class="ico">⚠️</span>
+            <span><strong>뇌·심장 진단비 보장 부족</strong> · 3대 질환 보장이 1천만원 미만입니다</span>
+          </div>
+          <div class="report-alert">
+            <span class="ico">🔄</span>
+            <span><strong>수술비 중복 가입</strong> · 두 보험에서 동일 보장 (월 8천원 절감 가능)</span>
+          </div>
+          <div class="report-alert tip">
+            <span class="ico">💡</span>
+            <span><strong>실손 4세대 갱신 임박</strong> · 5세대 전환 시 월 보험료 약 12% 절감 가능</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 액션 버튼 2개 (부족한 보장 채우기 / 보험료 절감하기) -->
+      <div class="report-action-btns">
+        <button class="report-action-btn fill" id="btnFillGap">
+          <span class="ico">🛡️</span>
+          <span class="lbl">부족한 보장 채우기</span>
+        </button>
+        <button class="report-action-btn save" id="btnSavePremium">
+          <span class="ico">💰</span>
+          <span class="lbl">보험료 절감하기</span>
+        </button>
+      </div>
+
+      <button class="report-cta" id="ctaReport">
+        내 보험으로 진단 받기 →
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== 주변 사람 무료 분석해주기 (홈) — 추천 질문 위 ===== -->
+  <button class="invite-banner" id="homeInvite">
+    <span class="invite-ico">🎁</span>
+    <span class="invite-txt">
+      <strong>주변 사람 무료 분석해주기</strong>
+      <span class="invite-sub">카카오톡으로 보닥터를 공유하면 친구도 AI 보험 진단을 무료로 받아요</span>
+    </span>
+    <span class="invite-arrow">›</span>
+  </button>
+
+  <!-- ===== 추천 질문 드롭다운 ===== -->
+  <div class="suggest" id="suggest1">
+    <button class="suggest-head" data-target="suggest1">
+      <span class="ico">💬</span>
+      <span class="txt">보험료를 절약하는 방법은?</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="suggest-body">
+      <button class="suggest-item">실손보험 4세대로 갈아타면 보험료가 얼마나 줄어요?</button>
+      <button class="suggest-item">갱신형과 비갱신형, 장기적으로 뭐가 더 저렴해요?</button>
+      <button class="suggest-item">중복 가입한 보험은 어떻게 정리해요?</button>
+      <button class="suggest-item">단체실손이 있는데 개인실손도 필요할까요?</button>
+    </div>
+  </div>
+  <div class="suggest" id="suggest2">
+    <button class="suggest-head" data-target="suggest2">
+      <span class="ico">💬</span>
+      <span class="txt">최근 인기있는 보험 상품의 특징은?</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="suggest-body">
+      <button class="suggest-item">5세대 실손의료보험이 4세대와 다른 점이 뭐예요?</button>
+      <button class="suggest-item">치매·간병보험은 꼭 가입해야 하나요?</button>
+      <button class="suggest-item">자녀 보험은 어떤 보장이 중요한가요?</button>
+    </div>
+  </div>
+  <div class="suggest" id="suggest3">
+    <button class="suggest-head" data-target="suggest3">
+      <span class="ico">💬</span>
+      <span class="txt">갱신형과 비갱신형 보험의 차이점</span>
+      <span class="arrow">▾</span>
+    </button>
+    <div class="suggest-body">
+      <button class="suggest-item">갱신형 보험료는 매년 얼마나 오를 수 있어요?</button>
+      <button class="suggest-item">비갱신형이 무조건 유리한가요?</button>
+    </div>
+  </div>
+
+  <!-- ===== Pill CTA (전문가) ===== -->
+  <div class="big-cta-wrap">
+    <div class="hint">AI 답변만으로 부족하다면</div>
+    <button class="big-cta" id="ctaExpert">
+      <span>👨‍💼</span>
+      전문가 1:1 상담받기
+    </button>
+  </div>
+
+  <!-- ===== 푸터 ===== -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <button class="footer-link" id="footerPrivacy">개인정보처리방침</button>
+      <span class="footer-divider">·</span>
+      <button class="footer-link" id="footerTerms">이용약관</button>
+    </div>
+    <div class="footer-company">
+      <div class="footer-row">상호 : (주)넥스트밸류파트너스</div>
+      <div class="footer-row">서비스명 : 보닥터</div>
+      <div class="footer-row">대표 : 김수찬</div>
+      <div class="footer-row">대표번호 : <a href="tel:02-6952-6636">02-6952-6636</a></div>
+      <div class="footer-row">주소 : 서울시 중구 중림로10, 111동402호</div>
+      <div class="footer-row">사업자등록번호 : 310-86-04023</div>
+      <div class="footer-copy">© 2026 보닥터 (Bodoctor). All rights reserved.</div>
+    </div>
+  </footer>
+
+  </div><!-- /homeView -->
+
+  <!-- ===== AI 채팅 뷰 ===== -->
+  <div id="chatView" hidden>
+    <section class="hero" style="padding-top:8px;">
+      <h1 style="font-size:22px;">AI 보험 상담 🤖</h1>
+      <p>궁금한 보험 정보, 무엇이든 물어보세요</p>
+    </section>
+    <section class="chat-card">
+      <div class="chat-input-row">
+        <input id="askInput" type="text" placeholder="궁금한 보험 정보, 무엇이든 물어보세요" />
+        <button class="btn-send" id="askBtn" aria-label="질문하기">↑</button>
+      </div>
+      <div class="messages" id="messages"></div>
+    </section>
+  </div>
+
+  <!-- ===== 내 보험 뷰 (하단 탭 '내 보험') ===== -->
+  <div id="myInsuranceView" hidden>
+    <div class="mi-wrap">
+
+      <!-- 비회원 -->
+      <section class="mi-section" id="miGuest">
+        <h1 class="mi-title">내 보험,<br>이대로 괜찮을까요?</h1>
+        <p class="mi-sub">카카오로 로그인하고<br>내 보험을 무료로 진단받아 보세요</p>
+        <svg class="mi-gauge" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="miGrad1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ef4444"/><stop offset="0.5" stop-color="#a78bfa"/><stop offset="1" stop-color="#6366f1"/>
+          </linearGradient></defs>
+          <path d="M20 115 A 90 90 0 0 1 200 115" fill="none" stroke="#eef1f5" stroke-width="20" stroke-linecap="round"/>
+          <path d="M20 115 A 90 90 0 0 1 200 115" fill="none" stroke="url(#miGrad1)" stroke-width="20" stroke-linecap="round"/>
+          <text x="110" y="104" text-anchor="middle" font-size="40" font-weight="800" fill="#6366f1">?</text>
+        </svg>
+        <div class="mi-gauge-label">보험 등급 점수</div>
+        <div class="mi-gauge-score"><b>??</b>점</div>
+        <div class="mi-note">※ 보닥터가 자체 평가한 점수/등급</div>
+        <button class="mi-cta kakao" id="miKakaoBtn" type="button"><span style="margin-right:6px;">💬</span>카카오로 시작하기</button>
+      </section>
+
+      <!-- 회원 -->
+      <section class="mi-section" id="miMember" hidden>
+        <div class="mi-profile">
+          <div class="mi-avatar">👤</div>
+          <div class="mi-profile-info">
+            <div class="mi-profile-name" id="miName">회원님</div>
+            <div class="mi-profile-sub" id="miSub">보닥터 회원</div>
+          </div>
+          <button class="mi-gear" id="miGear" type="button">계정 관리 ⌄</button>
+        </div>
+        <div class="mi-account" id="miAccount" hidden>
+          <button class="mi-logout" id="miLogout" type="button">로그아웃</button>
+          <button class="mi-withdraw" id="miWithdraw" type="button">회원 탈퇴</button>
+        </div>
+
+        <div class="mi-diag-box">
+          <h2 class="mi-title" style="font-size:21px;margin:2px 0 4px;">내 보험 점수는<br>몇 점일까?</h2>
+          <p class="mi-sub" style="margin-bottom:10px;">내 보험 조회하고<br>간편하게 진단 받으세요</p>
+          <svg class="mi-gauge" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="miGrad2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#ef4444"/><stop offset="0.5" stop-color="#a78bfa"/><stop offset="1" stop-color="#6366f1"/>
+            </linearGradient></defs>
+            <path d="M20 115 A 90 90 0 0 1 200 115" fill="none" stroke="#eef1f5" stroke-width="20" stroke-linecap="round"/>
+            <path d="M20 115 A 90 90 0 0 1 200 115" fill="none" stroke="url(#miGrad2)" stroke-width="20" stroke-linecap="round"/>
+            <text x="110" y="104" text-anchor="middle" font-size="40" font-weight="800" fill="#6366f1">?</text>
+          </svg>
+          <div class="mi-gauge-label">보험 등급 점수</div>
+          <div class="mi-gauge-score"><b>??</b>점</div>
+          <div class="mi-note">※ 보닥터가 자체 평가한 점수/등급</div>
+          <button class="mi-cta" id="miDiagBtn" type="button">내 보험 진단하기</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ===== 카카오 시작 버튼 (탭바 위 sticky) ===== -->
+<div class="kakao-cta-wrap">
+  <button class="btn-kakao" id="btnKakao">
+    <span class="ico">💬</span>
+    카카오로 3초만에 시작하기
+  </button>
+</div>
+
+<!-- ===== 하단 탭바 (4개) ===== -->
+<nav class="tabbar">
+  <button class="tab active" data-tab="home">
+    <span class="tab-ico">🏠</span>
+    <span>홈</span>
+  </button>
+  <button class="tab" data-tab="ai">
+    <span class="tab-ico">✨</span>
+    <span>AI</span>
+  </button>
+  <button class="tab" data-tab="myinsurance">
+    <span class="tab-ico">🛡️</span>
+    <span>내 보험</span>
+  </button>
+  <button class="tab" data-tab="claim">
+    <span class="tab-ico">💰</span>
+    <span>보험금 청구</span>
+  </button>
+</nav>
+
+<!-- ===== 불필요 보험료 2지선다 모달 ===== -->
+<div class="modal-overlay" id="checkModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>불필요한 보험료, 확인해볼까요?</h2>
+      <button class="modal-close" data-close="checkModal" aria-label="닫기">×</button>
+    </div>
+    <!-- 비회원: 먼저 카카오 로그인 -->
+    <div class="check-step" data-cstep="login" hidden>
+      <p class="modal-sub">먼저 카카오로 로그인하면 <strong>무료로 보험료를 점검</strong>해드려요.</p>
+      <button class="btn-kakao" id="checkKakaoBtn" type="button" style="width:100%;">
+        <span class="ico">💬</span> 카카오로 시작하기
+      </button>
+    </div>
+
+    <!-- 회원: 2지선다 -->
+    <div class="check-step" data-cstep="choice">
+      <p class="modal-sub">원하는 방법을 선택하세요. <strong>새는 보험료가 있는지 무료로 점검</strong>해드려요.</p>
+      <button class="check-choice" id="checkDiag" type="button">
+        <span class="cc-ico">🛡️</span>
+        <span class="cc-body">
+          <b>내 보험 진단받기</b>
+          <span>AI가 내 가입내역을 분석해 중복·과다 보험료를 찾아드려요</span>
+        </span>
+        <span class="cc-arrow">›</span>
+      </button>
+      <button class="check-choice green" id="checkTalk" type="button">
+        <span class="cc-ico">👨‍💼</span>
+        <span class="cc-body">
+          <b>상담부터 받기</b>
+          <span>보험 전문가가 바로 연락드려 1:1로 점검해드려요</span>
+        </span>
+        <span class="cc-arrow">›</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 개인정보 수집·이용 동의 모달 (상담 DB 전송 전 공용) ===== -->
+<div class="modal-overlay" id="consentModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>개인정보 수집·이용 동의</h2>
+      <button class="modal-close" data-close="consentModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">상담 연결을 위해 아래 항목에 동의가 필요해요.</p>
+    <label class="consent" style="margin-bottom:14px;">
+      <input type="checkbox" id="consentModalCheck">
+      <span>[필수] 개인정보(이름·연락처·상담내용 및 보험 진단 요약)의 수집·이용과 제휴 보험 전문가에게 제공하는 것에 동의합니다.
+        <a href="#" id="consentViewPrivacy">개인정보처리방침</a> · <a href="#" id="consentViewTerms">이용약관</a></span>
+    </label>
+    <button class="btn-submit" id="consentSubmit" type="button" disabled style="width:100%;">동의하고 신청하기</button>
+  </div>
+</div>
+
+<!-- ===== 🧪 테스트용 가상 보고서 (개발자용, 주소 끝에 ?test=1 일 때만 노출) ===== -->
+<button id="testReportFab" type="button" hidden
+  style="position:fixed;left:12px;bottom:calc(var(--tabbar-h) + 84px);z-index:60;background:#111827;color:#fff;border:none;border-radius:999px;padding:10px 15px;font-size:12px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.32);">🧪 테스트 보고서</button>
+
+<div class="modal-overlay" id="testReportModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>🧪 가상 프로필로 AI 보고서 생성</h2>
+      <button class="modal-close" data-close="testReportModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">API 연동 없이, 가상 인물의 보험 가입내역을 자유롭게 적으면 <strong>실제 AI 보고서</strong>가 나옵니다. (테스트 전용 — DB에 저장되지 않아요.)</p>
+    <textarea id="testReportInput" rows="9"
+      style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px;font-size:13.5px;font-family:inherit;line-height:1.6;color:var(--text);resize:vertical;box-sizing:border-box;"
+      placeholder="예) 38세 남성, 비흡연.&#10;- 삼성생명 실손의료비(4세대) 월 18,000원&#10;- 메리츠화재 종합보험: 암진단비 3,000만원, 뇌졸중 진단비 2,000만원, 월 52,000원&#10;- 현대해상 운전자보험 월 12,000원&#10;- 사망보장 없음, 수술비 특약 중복(2건) 의심&#10;직업: 사무직. 가족력: 부친 심근경색."></textarea>
+    <button class="btn-submit" id="testReportGenerate" type="button" style="width:100%;margin-top:10px;">AI 보고서 생성</button>
+  </div>
+</div>
+
+<!-- ===== 전문가 상담 모달 ===== -->
+<div class="modal-overlay" id="expertModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>전문가 1:1 상담받기</h2>
+      <button class="modal-close" data-close="expertModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">AI 답변으로 부족하셨다면, <strong>보험 전문가가 직접 정리</strong>해드립니다. 광고성 연락은 일절 하지 않습니다.</p>
+
+    <div data-form="expert">
+      <button class="btn-kakao" id="expertKakaoBtn" type="button" style="width:100%;margin-bottom:14px;">
+        💬 카카오로 3초만에 신청하기
+      </button>
+      <div class="form-divider">또는 직접 입력</div>
+      <div class="form-group">
+        <label>이름<span class="req">*</span></label>
+        <input type="text" data-field="name" placeholder="홍길동" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>휴대폰 번호<span class="req">*</span></label>
+        <input type="tel" data-field="phone" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric">
+      </div>
+      <div class="form-group">
+        <label>상담받고 싶은 내용 (선택)</label>
+        <textarea data-field="message" placeholder="예: 현재 실손 보험료가 부담돼서 갈아탈지 고민입니다."></textarea>
+      </div>
+      <label class="consent">
+        <input type="checkbox" data-field="consent">
+        <span>개인정보 수집·이용에 동의합니다. (이름·휴대폰·상담내용, 보유 1년)</span>
+      </label>
+      <button class="btn-submit" data-submit="expert" disabled>상담 신청하기</button>
+    </div>
+
+    <div class="modal-success" data-success="expert" hidden>
+      <div class="check">✅</div>
+      <h3>상담 신청이 접수되었어요</h3>
+      <p>영업일 기준 1일 이내에 입력하신 번호로<br>전문가가 직접 연락드립니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 담당 설계사 지정 모달 ===== -->
+<div class="modal-overlay" id="claimModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>담당 설계사 지정하기</h2>
+      <button class="modal-close" data-close="claimModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">보험금 청구 절차를 <strong>전담 설계사가 처음부터 끝까지</strong> 도와드립니다. 청구 서류 준비, 진료 기록 확인, 부지급 대응까지.</p>
+
+    <div data-form="claim">
+      <button class="btn-kakao" id="claimKakaoBtn" type="button" style="width:100%;margin-bottom:14px;">
+        💬 카카오로 3초만에 신청하기
+      </button>
+      <div class="form-divider">또는 직접 입력</div>
+      <div class="form-group">
+        <label>이름<span class="req">*</span></label>
+        <input type="text" data-field="name" placeholder="홍길동" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>휴대폰 번호<span class="req">*</span></label>
+        <input type="tel" data-field="phone" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric">
+      </div>
+      <div class="form-group">
+        <label>청구하실 보험금 종류 (선택)</label>
+        <textarea data-field="message" placeholder="예: 입원·수술비 청구 / 진단비 청구 / 실손 부지급 재심사 등"></textarea>
+      </div>
+      <label class="consent">
+        <input type="checkbox" data-field="consent">
+        <span>개인정보 수집·이용에 동의합니다. (이름·휴대폰·청구내용, 보유 1년)</span>
+      </label>
+      <button class="btn-submit" data-submit="claim" disabled>지정 문의하기</button>
+    </div>
+
+    <div class="modal-success" data-success="claim" hidden>
+      <div class="check">✅</div>
+      <h3>지정 문의가 접수되었어요</h3>
+      <p>영업일 기준 1일 이내에 담당 설계사가<br>입력하신 번호로 직접 연락드립니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 카카오 로그인 모달 (탭바 비회원 클릭 시) ===== -->
+<div class="modal-overlay" id="kakaoLoginModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>카카오로 로그인</h2>
+      <button class="modal-close" data-close="kakaoLoginModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">서비스 이용을 위해 <strong>카카오 로그인</strong>이 필요해요. 3초만에 가입되고, 다음에는 바로 이용하실 수 있어요.</p>
+    <button class="btn-kakao" id="kakaoLoginBtn" type="button" style="width:100%;">
+      💬 카카오로 로그인 / 가입
+    </button>
+    <p style="font-size:11.5px;color:var(--text2);text-align:center;margin-top:12px;line-height:1.5;">
+      로그인 시 <a href="#" style="color:var(--primary);">이용약관</a> 및 <a href="#" style="color:var(--primary);">개인정보처리방침</a>에 동의하게 됩니다.
+    </p>
+  </div>
+</div>
+
+<!-- ===== 전문가 연결 확인 모달 (회원의 '내 전문가' 탭 클릭 시) ===== -->
+<div class="modal-overlay" id="expertConnectModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>내 전문가 연결</h2>
+      <button class="modal-close" data-close="expertConnectModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">회원님 전담 보험 전문가를 <strong>지금 바로 연결</strong>해드릴까요? 영업일 기준 1일 이내 카카오톡으로 연락드립니다.</p>
+    <button class="btn-submit" id="expertConnectBtn" type="button" style="width:100%;">
+      👨‍💼 전문가 연결하기
+    </button>
+  </div>
+</div>
+
+<!-- ===== 회원 자동 접수 성공 모달 ===== -->
+<div class="modal-overlay" id="autoBookedModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-success">
+      <div class="check">✅</div>
+      <h3 id="autoBookedTitle">상담사가 배정되었어요</h3>
+      <p id="autoBookedDesc">영업일 기준 1일 이내에<br>카카오톡 또는 등록된 연락처로 상담사가 연락드립니다.</p>
+      <button class="btn-submit" id="autoBookedClose" style="margin-top:18px;">확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== iPhone 앱 설치 안내 모달 ===== -->
+<div class="modal-overlay" id="iosInstallModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>홈 화면에 앱 설치</h2>
+      <button class="modal-close" data-close="iosInstallModal" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-sub">iPhone은 <strong>Safari</strong>에서 아래 순서로 설치하면, 앱처럼 홈 화면에서 바로 열 수 있어요.</p>
+    <ol class="ios-steps">
+      <li><span class="num">1</span> <span>Safari 하단 <strong>공유 버튼</strong>(⬆️ 네모에 화살표) 탭</span></li>
+      <li><span class="num">2</span> <span>목록을 내려 <strong>‘홈 화면에 추가’</strong> 선택</span></li>
+      <li><span class="num">3</span> <span>우측 상단 <strong>‘추가’</strong> 탭 → 설치 완료</span></li>
+    </ol>
+    <p style="font-size:11px;color:var(--text3);margin-top:12px;line-height:1.5;">※ 안드로이드(크롬)는 헤더의 ‘앱 설치’ 버튼을 누르면 바로 설치됩니다.</p>
+  </div>
+</div>
+
+<!-- ===== 개인정보처리방침 모달 ===== -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>개인정보처리방침</h2>
+      <button class="modal-close" data-close="privacyModal" aria-label="닫기">×</button>
+    </div>
+    <div class="legal-body">
+      <p>(주)넥스트밸류파트너스(이하 '회사')는 '보닥터' 서비스 이용자의 개인정보를 중요하게 생각하며, 「개인정보 보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 등 관련 법령을 준수합니다.</p>
+
+      <h3>1. 수집하는 개인정보 항목</h3>
+      <ul>
+        <li>카카오 로그인 시: 닉네임, 이메일, 카카오 회원번호(필요 시 전화번호)</li>
+        <li>상담·매칭 신청 시: 이름, 휴대폰번호, 상담 내용</li>
+        <li>AI 상담 이용 시: 채팅 질문·답변 내역</li>
+        <li>보험 진단 시: 본인인증 정보 및 신용정보원 '내보험다보여' 보험 가입내역(보장·보험료 등). 신용정보원 로그인 아이디·비밀번호는 <strong>저장하지 않으며 조회 시 1회성으로만</strong> 사용됩니다.</li>
+      </ul>
+
+      <h3>2. 수집·이용 목적</h3>
+      <p>회원 식별 및 본인확인, AI 보험 진단·분석 결과 제공, 보험 전문가(설계사) 상담 연결 및 연락, 서비스 개선.</p>
+
+      <h3>3. 보유 및 이용기간</h3>
+      <table>
+        <tr><th>항목</th><th>보유기간</th></tr>
+        <tr><td>상담·매칭 신청 정보</td><td>수집일로부터 1년</td></tr>
+        <tr><td>회원 정보(카카오)</td><td>회원 탈퇴 또는 연동 해제 시까지</td></tr>
+        <tr><td>보험 진단 조회 데이터</td><td>분석 결과 제공 목적 달성 후 지체 없이 파기(아이디·비밀번호 미저장)</td></tr>
+      </table>
+
+      <h3>4. 제3자 제공</h3>
+      <p>이용자가 '전문가 상담'·'보험금 청구' 등 상담을 신청한 경우, 상담 진행을 위하여 제휴 보험 전문가(보험설계사)에게 이름, 휴대폰번호, 상담 내용 및 보험 진단 요약을 제공합니다. 제공받는 자는 상담 목적 달성 후 해당 정보를 파기합니다.</p>
+
+      <h3>5. 처리 위탁</h3>
+      <ul>
+        <li>데이터 저장: Google LLC(Google Workspace/Sheets)</li>
+        <li>AI 분석: Google LLC(Gemini API)</li>
+        <li>본인 보험 조회: ㈜코드에프(CODEF) 및 한국신용정보원(내보험다보여)</li>
+      </ul>
+
+      <h3>6. 정보주체의 권리</h3>
+      <p>이용자는 언제든지 본인 개인정보의 열람·정정·삭제·처리정지를 요구할 수 있으며, 고객센터(02-6952-6636)로 요청하실 수 있습니다.</p>
+
+      <h3>7. 개인정보 보호책임자</h3>
+      <p>성명: 김수찬 / 연락처: 02-6952-6636</p>
+
+      <h3>8. 안전성 확보 조치</h3>
+      <p>개인정보는 전송 구간 암호화(HTTPS) 등 합리적인 보호조치를 적용하여 처리합니다.</p>
+
+      <p class="legal-updated">본 방침은 2026년 6월 4일부터 적용됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 이용약관 모달 ===== -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2>이용약관</h2>
+      <button class="modal-close" data-close="termsModal" aria-label="닫기">×</button>
+    </div>
+    <div class="legal-body">
+      <h3>제1조 (목적)</h3>
+      <p>본 약관은 (주)넥스트밸류파트너스(이하 '회사')가 제공하는 '보닥터' 서비스(이하 '서비스')의 이용과 관련하여 회사와 이용자 간의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+      <h3>제2조 (정의)</h3>
+      <p>'서비스'란 AI를 활용한 보험 정보 상담, 본인 보험 가입내역 진단·분석, 보험 전문가 상담 연결 등을 말합니다. '이용자'란 본 약관에 따라 서비스를 이용하는 자를 말합니다.</p>
+
+      <h3>제3조 (약관의 효력 및 변경)</h3>
+      <p>본 약관은 서비스 화면에 게시함으로써 효력이 발생합니다. 회사는 관련 법령을 위배하지 않는 범위에서 약관을 변경할 수 있으며, 변경 시 적용일자 및 사유를 명시하여 사전 공지합니다.</p>
+
+      <h3>제4조 (서비스의 내용)</h3>
+      <ul>
+        <li>AI 보험 상담(일반 정보 제공)</li>
+        <li>본인 명의 보험 가입내역 진단 및 분석 리포트 제공</li>
+        <li>보험 전문가(설계사) 상담 연결 및 보험금 청구 지원 안내</li>
+      </ul>
+
+      <h3>제5조 (회원가입 및 이용)</h3>
+      <p>이용자는 카카오 계정 연동을 통해 회원가입할 수 있으며, 본인의 정확한 정보를 제공하여야 합니다.</p>
+
+      <h3>제6조 (이용자의 의무)</h3>
+      <p>이용자는 타인의 정보를 도용하거나 서비스 운영을 방해하는 행위를 하여서는 안 됩니다. 보험 진단을 위한 정보는 본인 명의에 한하여 제공해야 합니다.</p>
+
+      <h3>제7조 (서비스의 제공 및 중단)</h3>
+      <p>회사는 연중무휴 서비스 제공을 원칙으로 하나, 시스템 점검·장애 등 부득이한 경우 서비스의 전부 또는 일부를 중단할 수 있습니다.</p>
+
+      <h3>제8조 (면책)</h3>
+      <p>서비스가 제공하는 AI 분석 및 진단 결과는 <strong>참고용 정보</strong>이며, 보험 가입·해지·청구의 최종 판단 및 책임은 이용자 본인에게 있습니다. 정확한 사항은 보험증권 원문 및 보험 전문가 상담을 통해 확인하여야 합니다. 회사는 이용자가 본 정보에 전적으로 의존하여 발생한 손해에 대하여 책임을 지지 않습니다.</p>
+
+      <h3>제9조 (분쟁의 해결 및 준거법)</h3>
+      <p>본 약관은 대한민국 법령에 따라 해석되며, 서비스 이용과 관련한 분쟁에 대하여는 회사의 본점 소재지를 관할하는 법원을 합의관할로 합니다.</p>
+
+      <p class="legal-updated">본 약관은 2026년 6월 4일부터 시행됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 내 보험 진단 (내보험다보여/credit4u 실연동) ===== -->
+<div class="modal-overlay" id="diagModal">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="handle"></div>
+    <div class="modal-head">
+      <h2 id="diagModalTitle">내 보험 진단</h2>
+      <button class="modal-close" data-close="diagModal" aria-label="닫기">×</button>
+    </div>
+
+    <!-- Step 0: 카카오 로그인 -->
+    <div class="diag-step" data-step="welcome">
+      <p class="modal-sub">신용정보원 <strong>내보험다보여</strong>와 연동해 본인 명의 보험을 한 번에 조회합니다. 손해보험·생명보험 가입내역을 받은 뒤 AI가 분석해드려요.</p>
+      <div style="display:flex;gap:8px;background:var(--primary-soft);border-radius:12px;padding:11px 13px;margin-bottom:14px;">
+        <span style="font-size:15px;flex-shrink:0;">✨</span>
+        <p style="font-size:12px;color:var(--primary);font-weight:600;line-height:1.5;">한 번만 연동해두면, 다음부터는 매번 인증할 필요 없이 내 보험을 계속 편하게 볼 수 있어요.</p>
+      </div>
+      <button class="btn-kakao diag-kakao" id="diagKakaoLogin">
+        <span class="ico">💬</span>
+        카카오로 로그인하고 시작하기
+      </button>
+      <p style="font-size:11px;color:var(--text3);margin-top:14px;text-align:center;line-height:1.55;">
+        카카오 로그인 후 회원이면 신용정보원 ID·비밀번호로 즉시 조회,<br>
+        신규 회원은 우리 화면 안에서 자동으로 가입해드려요.
+      </p>
+    </div>
+
+    <!-- Step 0.4: 본인 정보 입력 → 코드에프로 내보험다보여 가입여부 자동 판별 -->
+    <div class="diag-step" data-step="identity" hidden>
+      <p class="modal-sub">보험 조회를 위한 본인 정보입니다. 다음 화면에서 <strong>로그인</strong>하거나, 아이디·비번이 기억 안 나면 <strong>아이디·비밀번호 찾기</strong>(문자 인증), 계정이 없으면 <strong>신규가입</strong>으로 진행할 수 있어요.</p>
+      <div class="form-group">
+        <label>이름 (실명)<span class="req">*</span></label>
+        <input type="text" id="diagIdName" placeholder="홍길동" autocomplete="name">
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:10px">
+        <div class="form-group" style="margin-bottom:0">
+          <label>주민번호 앞 7자리<span class="req">*</span></label>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <input type="text" id="diagIdBirth" maxlength="6" placeholder="900101" inputmode="numeric" style="text-align:center;">
+            <span style="color:var(--text3);font-weight:700;">-</span>
+            <input type="text" id="diagIdGender" maxlength="1" placeholder="●" inputmode="numeric" style="width:46px;text-align:center;">
+          </div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">생년월일 6자리 + 성별 1자리(주민번호 7번째)</div>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>휴대폰<span class="req">*</span></label>
+          <input type="tel" id="diagIdPhone" maxlength="11" placeholder="01012345678" inputmode="numeric">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>통신사<span class="req">*</span></label>
+        <select id="diagIdTelecom" class="diag-select">
+          <option value="0">SKT</option><option value="1">KT</option><option value="2">LG U+</option>
+          <option value="3">SKT 알뜰폰</option><option value="4">KT 알뜰폰</option><option value="5">LG U+ 알뜰폰</option>
+        </select>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="diagIdConsent">
+        <span>본인 정보로 내보험다보여 가입여부 확인 및 보험 조회 처리에 동의합니다.</span>
+      </label>
+      <button class="btn-submit" id="diagIdSubmit" disabled>본인인증하고 SMS 인증번호 받기</button>
+      <div style="display:flex;align-items:center;gap:10px;margin:16px 0 10px;color:var(--text3);font-size:12px;font-weight:600;">
+        <span style="flex:1;height:1px;background:var(--border);"></span>또는<span style="flex:1;height:1px;background:var(--border);"></span>
+      </div>
+      <button type="button" id="diagTalkFirst" style="width:100%;padding:14px;border:1.5px solid var(--primary);background:var(--primary-soft);color:var(--primary);font-weight:700;font-size:15px;border-radius:12px;cursor:pointer;">본인인증 없이 진단 받기</button>
+      <p style="font-size:11px;color:var(--text3);margin-top:8px;text-align:center;line-height:1.55;">인증이 번거로우면 상담부터 신청하세요. 개인정보 이용에 동의하면 전문가가 직접 연락드려요.</p>
+    </div>
+
+    <!-- Step 0.5: (자동 판별 실패 시) 사용자가 직접 선택 -->
+    <div class="diag-step" data-step="bridge" hidden>
+      <div style="text-align:center;padding:8px 0 14px;">
+        <div style="font-size:30px;margin-bottom:8px;">🛡️</div>
+        <div style="font-size:14.5px;font-weight:700;margin-bottom:4px;">내보험다보여 연동</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.5;">
+          보험 가입내역은 <strong>내보험다보여(credit4u.or.kr)</strong>를 통해 조회해요.<br>이 사이트 계정이 있으신가요?
+        </div>
+      </div>
+      <div class="diag-options">
+        <button class="diag-option" data-go="login">
+          <div class="opt-ico">🔑</div>
+          <div class="opt-ttl">네, 계정 있어요</div>
+          <div class="opt-sub">내보험다보여 ID·비밀번호로 바로 조회</div>
+        </button>
+        <button class="diag-option" data-go="register">
+          <div class="opt-ico">✨</div>
+          <div class="opt-ttl">아니요, 처음이에요</div>
+          <div class="opt-sub">내보험다보여 가입 경험 없음 (화면 안에서 자동 가입)</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 1a: 기존 회원 로그인 -->
+    <div class="diag-step" data-step="login" hidden>
+      <p class="modal-sub"><strong>credit4u.or.kr</strong> 회원 ID·비밀번호를 입력해주세요. 저장하지 않고 1회성으로만 사용됩니다.</p>
+      <div class="form-group">
+        <label>로그인 ID<span class="req">*</span></label>
+        <input type="text" id="diagLoginId" placeholder="영문+숫자 6~12자" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label>비밀번호<span class="req">*</span></label>
+        <input type="password" id="diagLoginPwd" placeholder="비밀번호" autocomplete="current-password">
+      </div>
+      <div class="diag-find-box">
+        <div class="diag-find-head">🔑 아이디·비밀번호가 기억나지 않으세요?</div>
+        <div class="diag-find-guide">
+          여기서 바로 찾을 수 있어요. <strong>휴대폰 SMS 인증</strong>으로 신용정보원이 아이디·임시비밀번호를
+          <strong>카톡(문자)</strong>으로 보내드립니다.
+        </div>
+        <div class="find-btn-row">
+          <button type="button" class="find-act-btn" id="diagFindIdBtn">아이디 찾기</button>
+          <button type="button" class="find-act-btn" id="diagFindPwdBtn">비밀번호 찾기</button>
+        </div>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="diagLoginConsent">
+        <span>코드에프 → 내보험다보여 조회 및 분석 처리에 동의합니다.</span>
+      </label>
+      <button class="btn-submit" id="diagLoginSubmit" disabled>로그인하여 조회</button>
+    </div>
+
+    <!-- Step F1: 아이디 찾기 (SMS 인증) -->
+    <div class="diag-step" data-step="findid" hidden>
+      <p class="modal-sub">본인확인에 입력하신 정보로 <strong>아이디 찾기</strong>를 진행합니다. 휴대폰으로 <strong>SMS 인증번호</strong>를 보내드려요.</p>
+      <div id="findidStart">
+        <div class="report-alert tip" style="margin-bottom:12px;">
+          <span class="ico">📲</span>
+          <span>아이디는 인증 완료 후 <strong>본인 휴대폰으로 문자 발송</strong>됩니다. (마스킹된 아이디는 화면에도 표시)</span>
+        </div>
+        <button class="btn-submit" id="findidSendBtn">SMS 인증번호 받기</button>
+        <button class="btn-text-back" data-go="login">← 로그인으로</button>
+      </div>
+      <div id="findidSms" hidden>
+        <input type="text" id="findidSmsCode" inputmode="numeric" maxlength="8" placeholder="인증번호"
+          style="width:100%;background:#f7f7fa;border:1.5px solid transparent;border-radius:12px;padding:14px;font-size:20px;letter-spacing:6px;text-align:center;font-family:inherit;outline:none;font-weight:700;">
+        <button class="btn-submit" id="findidVerifyBtn" disabled style="margin-top:12px;">인증하고 아이디 찾기</button>
+      </div>
+      <div id="findidResult" hidden style="text-align:center;padding:8px 0;">
+        <div style="font-size:34px;margin-bottom:8px;">📬</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">본인인증 완료 · 가입된 회원이에요</div>
+        <div style="font-size:12.5px;color:var(--text2);margin-bottom:4px;">아이디를 본인 휴대폰(문자·카톡)으로 보냈어요.</div>
+        <div id="findidMasked" style="font-size:13px;color:var(--primary);font-weight:700;margin-bottom:16px;"></div>
+        <div class="find-btn-row" style="grid-template-columns:1fr;gap:8px;">
+          <button class="btn-submit" id="findidToLoginBtn">아이디·비번으로 로그인</button>
+          <button class="find-act-btn" id="findidToPwdBtn">비밀번호 찾기</button>
+        </div>
+      </div>
+      <div id="findidNotReg" hidden style="text-align:center;padding:8px 0;">
+        <div style="font-size:34px;margin-bottom:8px;">✨</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">가입된 계정이 없어요</div>
+        <div style="font-size:12.5px;color:var(--text2);margin-bottom:16px;">내보험다보여 신규가입을 진행할게요. (본인정보 자동 입력)</div>
+        <button class="btn-submit" id="findidToRegBtn">신규가입 하기</button>
+      </div>
+    </div>
+
+    <!-- Step F2: 비밀번호 찾기 (아이디+본인인증 → 임시비번 카톡 발송 → 임시비번 로그인) -->
+    <div class="diag-step" data-step="findpwd" hidden>
+      <p class="modal-sub"><strong>비밀번호 찾기</strong>: 아이디 입력 + 본인인증(SMS) → <strong>임시비밀번호를 카톡(문자)으로</strong> 보내드려요. 그 임시비밀번호로 로그인하면 됩니다.</p>
+      <div id="findpwdForm">
+        <div class="form-group">
+          <label>로그인 아이디<span class="req">*</span></label>
+          <input type="text" id="findpwdId" placeholder="내보험다보여 아이디">
+        </div>
+        <div class="form-group">
+          <label>주민등록번호 뒤 7자리<span class="req">*</span></label>
+          <input type="password" id="findpwdRrn7" maxlength="7" inputmode="numeric" placeholder="●●●●●●●">
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">본인확인 전용. 저장하지 않고 1회성으로만 사용됩니다.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:10px">
+          <div class="form-group" style="margin-bottom:0">
+            <label>휴대폰<span class="req">*</span></label>
+            <input type="tel" id="findpwdPhone" maxlength="11" placeholder="01012345678" inputmode="numeric">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>통신사<span class="req">*</span></label>
+            <select id="findpwdTelecom" class="diag-select">
+              <option value="0">SKT</option><option value="1">KT</option><option value="2">LG U+</option>
+              <option value="3">SKT 알뜰폰</option><option value="4">KT 알뜰폰</option><option value="5">LG U+ 알뜰폰</option>
+            </select>
+          </div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text3);margin:6px 0 2px;">※ 이 휴대폰으로 SMS 인증번호와 임시비밀번호(카톡)가 발송됩니다.</div>
+        <label class="consent">
+          <input type="checkbox" id="findpwdConsent">
+          <span>본인 정보로 내보험다보여 임시비밀번호 발급 처리에 동의합니다.</span>
+        </label>
+        <button class="btn-submit" id="findpwdStartBtn" disabled>본인인증하고 SMS 받기</button>
+        <button class="btn-text-back" data-go="login">← 로그인으로</button>
+      </div>
+      <div id="findpwdSms" hidden>
+        <p class="modal-sub">휴대폰으로 발송된 <strong>SMS 인증번호</strong>를 입력해주세요. 인증하면 임시비밀번호가 카톡으로 발송됩니다.</p>
+        <input type="text" id="findpwdSmsCode" inputmode="numeric" maxlength="8" placeholder="인증번호"
+          style="width:100%;background:#f7f7fa;border:1.5px solid transparent;border-radius:12px;padding:14px;font-size:20px;letter-spacing:6px;text-align:center;font-family:inherit;outline:none;font-weight:700;">
+        <button class="btn-submit" id="findpwdSmsBtn" disabled style="margin-top:12px;">인증 → 임시비번 받기</button>
+      </div>
+      <div id="findpwdReset" hidden>
+        <div class="report-alert tip" style="margin-bottom:12px;">
+          <span class="ico">📬</span>
+          <span>임시비밀번호를 <strong>카톡(문자)</strong>으로 보냈어요. 받으신 임시비밀번호와 새로 쓸 비밀번호를 입력하면 <strong>새 비밀번호로 재설정</strong>됩니다.</span>
+        </div>
+        <div class="form-group">
+          <label>임시비밀번호 (카톡 수신)<span class="req">*</span></label>
+          <input type="text" id="findpwdTempCode" placeholder="카톡 내용을 그대로 붙여넣으세요"
+            autocapitalize="off" autocorrect="off" spellcheck="false"
+            style="font-family:'Courier New',monospace;letter-spacing:1px;">
+          <div class="paste-tip">
+            <div class="paste-tip-text">📋 받은 <strong>카톡(문자) 내용을 그대로 복사·붙여넣기</strong> 하세요. 한글·공백은 자동으로 지워지고 <strong>임시비밀번호(영문·숫자·특수문자)만</strong> 입력됩니다.</div>
+            <svg viewBox="0 0 320 196" width="100%" style="max-width:300px;margin:6px auto 0;display:block;" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="6" width="304" height="80" rx="12" fill="#FEF6C9" stroke="#F2E08E"/>
+              <text x="20" y="26" font-size="10.5" fill="#8a8a9a">[한국신용정보원] 임시비밀번호 안내</text>
+              <text x="20" y="44" font-size="10.5" fill="#8a8a9a">고객님의 임시비밀번호는</text>
+              <rect x="20" y="52" width="104" height="22" rx="5" fill="#ffffff" stroke="#6366f1"/>
+              <text x="28" y="68" font-size="13" font-weight="700" fill="#6366f1" font-family="monospace">aB3$xY9k</text>
+              <text x="132" y="68" font-size="10.5" fill="#8a8a9a">입니다.</text>
+              <text x="160" y="112" font-size="12" fill="#a3a3b8" text-anchor="middle">⬇  그대로 붙여넣기</text>
+              <rect x="36" y="126" width="248" height="44" rx="10" fill="#f7f7fa" stroke="#6366f1" stroke-width="1.5"/>
+              <text x="54" y="153" font-size="15" font-weight="700" fill="#1c1c2c" font-family="monospace">aB3$xY9k</text>
+              <text x="262" y="153" font-size="14" fill="#10b981">✓</text>
+              <text x="160" y="188" font-size="9.5" fill="#a3a3b8" text-anchor="middle">한글·안내문구는 자동 제거 → 비밀번호만 남음</text>
+            </svg>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>새 비밀번호<span class="req">*</span></label>
+          <input type="password" id="findpwdNewPw" placeholder="영문+숫자+특수문자 9~20자">
+          <div class="rule-list" data-for="findpwdNewPw">
+            <div class="rule-item" data-rule="len"><span class="chk"></span>9~20자</div>
+            <div class="rule-item" data-rule="combo"><span class="chk"></span>영문·숫자·특수문자 모두 포함</div>
+            <div class="rule-item" data-rule="repeat"><span class="chk"></span>같은 문자·숫자 3번 연속 없음 (aaa·111)</div>
+            <div class="rule-item" data-rule="seq"><span class="chk"></span>연속 3자 없음 (abc·123)</div>
+            <div class="rule-item" data-rule="personal"><span class="chk"></span>아이디·생년월일·전화·주민번호와 다름</div>
+          </div>
+        </div>
+        <button class="btn-submit" id="findpwdResetBtn" disabled>비밀번호 재설정</button>
+      </div>
+      <div id="findpwdDone" hidden style="text-align:center;padding:8px 0;">
+        <div style="font-size:34px;margin-bottom:8px;">✅</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">비밀번호가 재설정됐어요</div>
+        <div style="font-size:12.5px;color:var(--text2);margin-bottom:14px;">방금 설정한 <strong>새 비밀번호</strong>로 로그인하세요. (아이디·비번 자동 입력)</div>
+        <button class="btn-submit" id="findpwdToLoginBtn">새 비번으로 로그인하러 가기</button>
+      </div>
+    </div>
+
+    <!-- Step 1b: 신규 가입 정보 입력 -->
+    <div class="diag-step" data-step="register" hidden>
+      <p class="modal-sub">본인 정보와 새로 만들 ID/이메일/비밀번호를 입력하시면, <strong>휴대폰 SMS 인증</strong> 후 자동 가입 + 조회가 진행됩니다.</p>
+      <div class="form-group">
+        <label>이름 (실명)<span class="req">*</span></label>
+        <input type="text" id="diagRegName" placeholder="홍길동" autocomplete="name">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="form-group" style="margin-bottom:0">
+          <label>생년월일 (YYMMDD)<span class="req">*</span></label>
+          <input type="text" id="diagRegBirth" maxlength="6" placeholder="900101" inputmode="numeric">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>휴대폰<span class="req">*</span></label>
+          <input type="tel" id="diagRegPhone" maxlength="11" placeholder="01012345678" inputmode="numeric">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>통신사<span class="req">*</span></label>
+        <select id="diagRegTelecom" class="diag-select">
+          <option value="0">SKT</option><option value="1">KT</option><option value="2">LG U+</option>
+          <option value="3">SKT 알뜰폰</option><option value="4">KT 알뜰폰</option><option value="5">LG U+ 알뜰폰</option>
+        </select>
+      </div>
+      <div style="height:1px;background:var(--border);margin:14px 0;"></div>
+      <div class="form-group">
+        <label>새 로그인 ID<span class="req">*</span></label>
+        <input type="text" id="diagRegId" placeholder="영문으로 시작, 영문+숫자 6~12자">
+        <div class="rule-list" data-for="diagRegId">
+          <div class="rule-item" data-rule="len"><span class="chk"></span>6~12자</div>
+          <div class="rule-item" data-rule="start"><span class="chk"></span>첫 글자는 영문 (숫자로 시작 불가)</div>
+          <div class="rule-item" data-rule="chars"><span class="chk"></span>영문·숫자만 사용</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>새 비밀번호<span class="req">*</span></label>
+        <input type="password" id="diagRegPwd" placeholder="영문+숫자+특수문자 9~20자">
+        <div class="rule-list" data-for="diagRegPwd">
+          <div class="rule-item" data-rule="len"><span class="chk"></span>9~20자</div>
+          <div class="rule-item" data-rule="combo"><span class="chk"></span>영문·숫자·특수문자 모두 포함</div>
+          <div class="rule-item" data-rule="repeat"><span class="chk"></span>같은 문자·숫자 3번 연속 없음 (aaa·111)</div>
+          <div class="rule-item" data-rule="seq"><span class="chk"></span>연속 3자 없음 (abc·123)</div>
+          <div class="rule-item" data-rule="personal"><span class="chk"></span>아이디·생년월일·전화·주민번호와 다름</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>이메일<span class="req">*</span></label>
+        <input type="email" id="diagRegEmail" placeholder="example@naver.com">
+        <div style="font-size:10px;color:var(--text3);margin-top:4px;">허용: naver, daum, nate, hanmail, gmail 등</div>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="diagRegConsent">
+        <span>본인 정보의 내보험다보여 회원가입·조회·분석 처리에 동의합니다.</span>
+      </label>
+      <button class="btn-submit" id="diagRegSubmit" disabled>가입 + 조회 시작</button>
+      <button class="btn-text-back" data-go="login">← 이미 계정이 있어요 (로그인)</button>
+    </div>
+
+    <!-- Step 2: SMS 인증 -->
+    <div class="diag-step" data-step="sms" hidden>
+      <div style="text-align:center;padding:8px 0 18px;">
+        <div style="font-size:36px;margin-bottom:6px;">📱</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">SMS 인증번호를 입력해주세요</div>
+        <div style="font-size:12.5px;color:var(--text2);">본인의 휴대폰으로 발송된 6자리 숫자</div>
+      </div>
+      <input type="text" id="diagSmsCode" inputmode="numeric" maxlength="6" placeholder="000000"
+        style="width:100%;background:#f7f7fa;border:1.5px solid transparent;border-radius:12px;padding:14px;font-size:22px;letter-spacing:10px;text-align:center;font-family:inherit;outline:none;font-weight:700;">
+      <button class="btn-submit" id="diagSmsSubmit" disabled style="margin-top:14px;">SMS 인증 → 조회</button>
+    </div>
+
+    <!-- Step 3: 결과 / 로딩 -->
+    <div class="diag-step" data-step="loading" hidden>
+      <div style="text-align:center;padding:32px 0 16px;">
+        <div style="font-size:38px;margin-bottom:10px;" class="spin-emoji">⏳</div>
+        <div id="diagLoadingTitle" style="font-size:15px;font-weight:700;margin-bottom:6px;">조회 중입니다...</div>
+        <div id="diagLoadingSub" style="font-size:12.5px;color:var(--text2);line-height:1.5;">신용정보원에서 본인 명의 보험을 가져오고 있어요. 10~30초 걸려요</div>
+      </div>
+    </div>
+
+    <!-- Step 4: 에러 -->
+    <div class="diag-step" data-step="error" hidden>
+      <div style="text-align:center;padding:24px 0 16px;">
+        <div style="font-size:34px;margin-bottom:8px;">⚠️</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:6px;">오류가 발생했어요</div>
+        <div id="diagErrorMsg" style="font-size:12.5px;color:var(--text2);line-height:1.6;padding:0 12px;"></div>
+      </div>
+      <button class="btn-submit" data-go="welcome">처음으로</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 설정
+// ============================================================
+// 백엔드 URL 자동 분기
+// - 로컬(file://, localhost, 127.0.0.1) → 개발 백엔드
+// - 그 외(배포 도메인) → 운영 백엔드 (Render URL로 교체 필요)
+// - window.__INSURANCE_AI_BACKEND__ 로 강제 오버라이드 가능
+const BACKEND = (() => {
+  if (typeof window !== 'undefined' && window.__INSURANCE_AI_BACKEND__) {
+    return window.__INSURANCE_AI_BACKEND__;
+  }
+  const h = (typeof location !== 'undefined' ? location.hostname : '') || '';
+  const isLocal = !h || h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || h.endsWith('.local');
+  if (isLocal) return 'http://localhost:8787';
+  // ⚠️ Render 백엔드 배포 후 아래 URL을 실제 값으로 교체하세요
+  //    예: 'https://bodoctor-backend.onrender.com'
+  return 'https://bodoctor-backend.onrender.com';
+})();
+const HISTORY_MAX_TURNS = 12;
+const conversation = [];
+
+// 공유할 서비스 URL (배포 도메인 우선, 로컬이면 운영 도메인으로)
+const SERVICE_URL = (() => {
+  const h = (typeof location !== 'undefined' ? location.hostname : '') || '';
+  const isLocal = !h || h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || h.endsWith('.local');
+  if (isLocal || location.protocol === 'file:') return 'https://bodoctor-frontend.vercel.app';
+  return location.origin;
+})();
+
+// ============================================================
+// 카카오 SDK — 공유 + 로그인
+//   KAKAO_JS_KEY: 카카오 developers > 플랫폼 키 > JavaScript 키
+//   KAKAO_REDIRECT_URI: 카카오 developers > 플랫폼 키 > 리다이렉트 URI 에 등록한 주소와 동일해야 함
+// ============================================================
+const KAKAO_JS_KEY = (typeof window !== 'undefined' && window.__KAKAO_JS_KEY__) || '90e7fd56730d8c001616e43aa2d3f65f';
+// 리다이렉트 URI는 현재 접속한 도메인에 자동으로 맞춤 (www.bodoctor.com / vercel.app 모두 동작)
+// → 카카오 콘솔의 Redirect URI 목록에 사용하는 모든 도메인을 등록해두면 됨
+const KAKAO_REDIRECT_URI = (typeof window !== 'undefined' && window.__KAKAO_REDIRECT_URI__) || (() => {
+  const h = (typeof location !== 'undefined' ? location.hostname : '') || '';
+  const isLocal = !h || h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || h.endsWith('.local');
+  if (isLocal || (typeof location !== 'undefined' && location.protocol === 'file:')) return 'https://www.bodoctor.com';
+  return location.origin;
+})();
+
+function initKakao() {
+  try {
+    if (window.Kakao && typeof window.Kakao.init === 'function'
+        && !window.Kakao.isInitialized()
+        && KAKAO_JS_KEY && KAKAO_JS_KEY !== 'YOUR_KAKAO_JAVASCRIPT_KEY') {
+      window.Kakao.init(KAKAO_JS_KEY);
+      console.log('[Kakao] SDK 초기화 완료');
+    }
+  } catch (e) { console.warn('[Kakao] init 실패:', e); }
+}
+initKakao();
+
+function kakaoReady() {
+  // file:// 또는 로컬에선 카카오가 도메인 등록을 요구(4019)하므로 공유는 fallback 사용
+  if (location.protocol === 'file:') return false;
+  const h = location.hostname || '';
+  if (h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0') return false;
+  return !!(window.Kakao && window.Kakao.isInitialized && window.Kakao.isInitialized() && window.Kakao.Share);
+}
+
+// 공용 공유 함수: 카카오 → Web Share API → 클립보드 복사 순으로 fallback
+async function shareLink({ title, description, url, buttonTitle }) {
+  url = url || SERVICE_URL;
+  title = title || '보닥터';
+  description = description || '';
+
+  // 1) 카카오톡 공유
+  if (kakaoReady()) {
+    try {
+      window.Kakao.Share.sendDefault({
+        objectType: 'text',
+        text: `${title}\n${description}`,
+        link: { mobileWebUrl: url, webUrl: url },
+        buttonTitle: buttonTitle || '보닥터에서 무료 진단받기',
+      });
+      return;
+    } catch (e) { console.warn('[Kakao] 공유 실패, fallback:', e); }
+  }
+
+  // 2) Web Share API (모바일 브라우저)
+  if (navigator.share) {
+    try {
+      await navigator.share({ title, text: description, url });
+      return;
+    } catch (e) {
+      if (e && e.name === 'AbortError') return; // 사용자가 취소
+    }
+  }
+
+  // 3) 클립보드 복사
+  const shareText = `${title}\n${description}\n${url}`;
+  try {
+    await navigator.clipboard.writeText(shareText);
+    alert('카카오 공유 키가 아직 연결되지 않아 링크를 복사했어요.\n카카오톡 대화창에 붙여넣어 보내보세요!\n\n' + url);
+  } catch (e) {
+    window.prompt('아래 링크를 복사해 카카오톡으로 공유하세요', url);
+  }
+}
+
+// 주변 사람 무료 분석해주기 — 서비스 초대 링크 공유
+function shareInvite() {
+  shareLink({
+    title: '🛡️ 보닥터 — AI 보험 무료 진단',
+    description: '내 보험이 잘 들어있는지 AI가 무료로 진단해줘. 너도 한번 받아봐!',
+    url: SERVICE_URL,
+    buttonTitle: '무료로 내 보험 진단받기',
+  });
+}
+
+// 진단 결과 공유하기 — 점수 포함
+function shareMyResult() {
+  const r = window.__lastReport;
+  const scoreTxt = (r && Number.isFinite(Number(r.overallScore)))
+    ? `내 보험 점수는 ${Number(r.overallScore)}점! ` : '';
+  shareLink({
+    title: '🛡️ 나 보닥터에서 보험 진단 받았어',
+    description: `${scoreTxt}AI가 내 보험 보장 빈틈을 분석해줬어. 너도 무료로 받아봐!`,
+    url: SERVICE_URL,
+    buttonTitle: '나도 무료 진단받기',
+  });
+}
+
+// 채팅 공유하기
+function shareChat() {
+  shareLink({
+    title: '🛡️ 보닥터 — 보험 궁금한 거 다 물어봐',
+    description: 'AI한테 보험 질문하면 바로 답해줘. 무료야!',
+    url: SERVICE_URL,
+    buttonTitle: 'AI에게 보험 물어보기',
+  });
+}
+
+// ============================================================
+// 회원 정보 + 채팅 요약 + 진단 레포트 (상담/매칭 시 DB로 전달)
+// ============================================================
+window.__lastReport = null;     // 마지막 진단 레포트 (JSON)
+window.__hasDiagnosed = false;  // 진단 완료 여부
+
+function buildChatSummary(maxChars = 1800) {
+  if (!conversation.length) return '';
+  const lines = conversation.map(m => `${m.role === 'user' ? '사용자' : 'AI'}: ${(m.text || '').replace(/\s+/g, ' ').trim()}`);
+  let s = lines.join('\n');
+  if (s.length > maxChars) s = '...(앞부분 생략)...\n' + s.slice(-maxChars); // 최근 대화 우선
+  return s;
+}
+
+// 상담/매칭 신청 시 함께 보낼 회원 컨텍스트
+function buildMemberContext() {
+  return {
+    chatSummary: buildChatSummary(),
+    report: window.__lastReport || null,
+    member: {
+      name: window.__userSession?.name || '',
+      phone: window.__userSession?.phone || '',
+      kakaoId: window.__userSession?.kakaoId || '',
+      gender: window.__userSession?.gender || '',
+      birthyear: window.__userSession?.birthyear || '',
+      isLoggedIn: !!window.__userSession?.isLoggedIn,
+    },
+  };
+}
+
+// ============================================================
+// 사용자 세션 (카카오 로그인) — localStorage로 유지(한 번 로그인하면 계속)
+// ============================================================
+const SESSION_KEY = 'bodoctor_session';
+const INTENT_KEY = 'bodoctor_intent';
+
+window.__userSession = { isLoggedIn: false, name: '', phone: '', kakaoId: '', email: '', gender: '', birthyear: '' };
+
+// 저장된 세션 복원 (재방문/리다이렉트 후에도 로그인 유지)
+try {
+  const saved = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+  if (saved && saved.isLoggedIn) window.__userSession = saved;
+} catch (e) {}
+
+function markLoggedIn(userInfo = {}) {
+  window.__userSession = {
+    isLoggedIn: true,
+    name: userInfo.name || userInfo.nickname || '카카오 회원',
+    phone: userInfo.phone || '',
+    kakaoId: userInfo.kakaoId || '',
+    email: userInfo.email || '',
+    gender: userInfo.gender || '',
+    birthyear: userInfo.birthyear || '',
+  };
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(window.__userSession)); } catch (e) {}
+  updateAuthUI();
+  console.log('[Auth] 로그인 완료', window.__userSession.name);
+}
+
+function logoutUser() {
+  window.__userSession = { isLoggedIn: false, name: '', phone: '', kakaoId: '', email: '', gender: '', birthyear: '' };
+  try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+  try { window.Kakao && window.Kakao.Auth && window.Kakao.Auth.logout && window.Kakao.Auth.logout(); } catch (e) {}
+  updateAuthUI();
+}
+
+// 로그인 상태에 따른 UI 갱신 (하단 카카오 시작 버튼 숨김 등)
+function updateAuthUI() {
+  document.body.classList.toggle('logged-in', !!(window.__userSession && window.__userSession.isLoggedIn));
+}
+updateAuthUI(); // 저장된 세션 복원 후 초기 반영
+
+// ============================================================
+// 카카오 로그인 (인가코드 리다이렉트 방식)
+//  - 로그인 필요 → 의도(intent)를 저장하고 카카오로 리다이렉트
+//  - 돌아오면 ?code= 를 백엔드(/api/auth/kakao)로 보내 토큰교환·회원조회
+//  - 로그인 완료 후 저장해둔 의도(진단/상담/매칭 등)를 이어서 실행
+// ============================================================
+function kakaoLoginAvailable() {
+  return !!(window.Kakao && window.Kakao.isInitialized && window.Kakao.isInitialized() && window.Kakao.Auth);
+}
+
+// 로그인 시작: intent = { run: '함수명', args:{...} } 형태로 저장
+function startKakaoLogin(intent) {
+  if (window.__userSession.isLoggedIn) {
+    if (intent) runIntent(intent);
+    return;
+  }
+  if (!kakaoLoginAvailable()) {
+    alert('카카오 로그인을 불러오지 못했어요. 잠시 후 다시 시도해주세요.');
+    return;
+  }
+  try { sessionStorage.setItem(INTENT_KEY, JSON.stringify(intent || {})); } catch (e) {}
+  // 동의 요청: 닉네임·이메일·이름·전화번호 (이름/전화번호 동의항목 심사 통과 → 로그인 시 수집)
+  window.Kakao.Auth.authorize({
+    redirectUri: KAKAO_REDIRECT_URI,
+    scope: 'profile_nickname,account_email,name,phone_number,gender,birthyear',
+  });
+}
+
+// 페이지 로드시: 카카오에서 ?code= 달고 돌아왔으면 처리
+async function handleKakaoRedirect() {
+  const params = new URLSearchParams(location.search);
+  const code = params.get('code');
+  if (!code) return;
+  // URL 정리 (code 노출 제거)
+  try { history.replaceState({}, document.title, location.pathname); } catch (e) {}
+
+  try {
+    const res = await fetch(BACKEND + '/api/auth/kakao', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code, redirectUri: KAKAO_REDIRECT_URI }),
+    });
+    const data = await res.json();
+    if (data.status === 'OK' && data.user) {
+      markLoggedIn(data.user);
+    } else {
+      console.warn('[Kakao] 로그인 처리 실패:', data);
+      alert('카카오 로그인 처리에 실패했어요. 다시 시도해주세요.');
+      return;
+    }
+  } catch (e) {
+    console.warn('[Kakao] 콜백 오류:', e);
+    alert('로그인 중 오류가 발생했어요: ' + e.message);
+    return;
+  }
+
+  // 저장해둔 의도 이어서 실행
+  let intent = null;
+  try { intent = JSON.parse(sessionStorage.getItem(INTENT_KEY) || 'null'); } catch (e) {}
+  try { sessionStorage.removeItem(INTENT_KEY); } catch (e) {}
+  if (intent) setTimeout(() => runIntent(intent), 200);
+}
+
+// 로그인 후 이어서 실행할 동작 매핑
+function runIntent(intent) {
+  if (!intent || !intent.run) return;
+  const a = intent.args || {};
+  switch (intent.run) {
+    case 'diag': openDiagModalFresh(); break;
+    case 'expertConnect': openModal('expertConnectModal'); break;
+    case 'expert': openDefaultExpertModal(); break;
+    case 'claim':
+      if (window.__userSession.isLoggedIn) autoBookContact('담당설계사-지정', '', '담당 설계사 지정 완료');
+      else openClaimModalFresh();
+      break;
+    case 'autobook': autoBookContact(a.source, a.message || '', a.successTitle || '신청이 접수되었어요'); break;
+    case 'opencheck': openCheckFlow(); break;
+    case 'gotomy': {
+      document.querySelectorAll('.tabbar .tab').forEach(t => t.classList.remove('active'));
+      const myTab = document.querySelector('.tabbar .tab[data-tab="myinsurance"]');
+      if (myTab) myTab.classList.add('active');
+      if (typeof showView === 'function') showView('myinsurance');
+      if (typeof renderMyInsurance === 'function') renderMyInsurance();
+      break;
+    }
+    case 'chatMatch': expertMatchFromChat(a.ctx || {}); break;
+    default: break;
+  }
+}
+
+// ============================================================
+// 채팅
+// ============================================================
+const messagesEl = document.getElementById('messages');
+const askInput = document.getElementById('askInput');
+const askBtn = document.getElementById('askBtn');
+
+function addBubble(role, text, isMarkdown = false) {
+  const b = document.createElement('div');
+  b.className = 'bubble ' + role;
+  if (isMarkdown && window.marked) b.innerHTML = window.marked.parse(text);
+  else b.textContent = text;
+  messagesEl.appendChild(b);
+  setTimeout(() => b.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+  return b;
+}
+
+async function ask(question) {
+  if (!question || question.trim().length < 2) return;
+  askInput.value = '';
+  askBtn.disabled = true;
+
+  addBubble('user', question);
+  const loadingEl = addBubble('ai', '답변을 준비하고 있어요');
+  loadingEl.classList.add('loading');
+
+  const historyForApi = conversation.slice(-HISTORY_MAX_TURNS);
+
+  try {
+    const res = await fetch(BACKEND + '/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, history: historyForApi })
+    });
+    if (!res.ok) throw new Error('서버 응답 ' + res.status);
+    const data = await res.json();
+    const answerText = data.answer || '응답이 비어있습니다.';
+
+    loadingEl.classList.remove('loading');
+    loadingEl.innerHTML = window.marked ? window.marked.parse(answerText) : answerText;
+
+    conversation.push({ role: 'user', text: question });
+    conversation.push({ role: 'assistant', text: answerText });
+
+    // 답변 하단에 공유 / 전문가 매칭 버튼
+    appendChatActions(loadingEl, { question, answerText });
+
+    // 5턴 이상 진행되면 전문가 상담 권유 1회
+    if (conversation.length >= 10 && !window.__expertOffered) {
+      window.__expertOffered = true;
+      setTimeout(() => {
+        addBubble('ai', '💡 **더 깊이 있는 분석을 원하시면 전문가 상담을 받아보세요.** 화면 우측 상단 [전문가 상담] 버튼을 누르시면 됩니다.', true);
+      }, 800);
+    }
+  } catch (e) {
+    loadingEl.classList.remove('loading');
+    loadingEl.innerHTML = `<strong>연결 오류:</strong> ${e.message}<br><br>백엔드 서버(localhost:8787) 실행 여부를 확인해주세요.`;
+  } finally {
+    askBtn.disabled = false;
+    askInput.focus();
+  }
+}
+
+// 채팅 답변 하단 액션 바 (공유 / 전문가 매칭)
+function appendChatActions(afterEl, ctx) {
+  const bar = document.createElement('div');
+  bar.className = 'chat-actions';
+
+  // 1) 내 보험 진단 (채팅 목적 = 진단 유도)
+  const diagBtn = document.createElement('button');
+  diagBtn.className = 'chat-action-btn diag';
+  diagBtn.innerHTML = '<span>🛡️</span> 내 보험 진단';
+  diagBtn.addEventListener('click', () => {
+    if (window.__userSession && window.__userSession.isLoggedIn) {
+      if (window.__hasDiagnosed) {
+        const card = document.getElementById('reportCard');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else { openDiagModalFresh(); }
+    } else {
+      startKakaoLogin({ run: 'diag' });
+    }
+  });
+
+  // 2) 전문가 상담 (채팅 내용 기반 매칭)
+  const matchBtn = document.createElement('button');
+  matchBtn.className = 'chat-action-btn match';
+  matchBtn.innerHTML = '<span>👨‍💼</span> 전문가 상담';
+  matchBtn.addEventListener('click', () => expertMatchFromChat(ctx));
+
+  // 3) 공유
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'chat-action-btn share';
+  shareBtn.innerHTML = '<span>📤</span> 공유';
+  shareBtn.addEventListener('click', shareChat);
+
+  bar.appendChild(diagBtn);
+  bar.appendChild(matchBtn);
+  bar.appendChild(shareBtn);
+  afterEl.insertAdjacentElement('afterend', bar);
+  setTimeout(() => bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
+}
+
+// 채팅 답변 기반 전문가 매칭 → 회원정보+채팅요약+레포트 DB 전달
+function expertMatchFromChat(ctx) {
+  const q = (ctx && ctx.question) ? ctx.question : '';
+  const a = (ctx && ctx.answerText) ? ctx.answerText.replace(/\s+/g, ' ').trim().slice(0, 400) : '';
+  const prefill = `[채팅 상담 내용 기반 전문가 매칭 요청]\nQ: ${q}\nA: ${a}${a.length >= 400 ? '...' : ''}`;
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    autoBookContact('채팅-전문가매칭', prefill, '전문가 매칭이 신청되었어요');
+  } else {
+    openExpertModalWithContext({
+      title: '이 내용으로 전문가 매칭',
+      source: '채팅-전문가매칭',
+      prefillMessage: prefill,
+    });
+  }
+}
+
+askBtn.addEventListener('click', () => ask(askInput.value));
+askInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.isComposing) ask(askInput.value);
+});
+
+// 홈: 주변 사람 무료 분석해주기 버튼
+const homeInviteEl = document.getElementById('homeInvite');
+if (homeInviteEl) homeInviteEl.addEventListener('click', shareInvite);
+
+// 푸터: 개인정보처리방침 / 이용약관 모달
+const footerPrivacyEl = document.getElementById('footerPrivacy');
+if (footerPrivacyEl) footerPrivacyEl.addEventListener('click', () => openModal('privacyModal'));
+const footerTermsEl = document.getElementById('footerTerms');
+if (footerTermsEl) footerTermsEl.addEventListener('click', () => openModal('termsModal'));
+// 카카오 로그인 모달 안의 약관/방침 링크도 모달로 연결
+document.querySelectorAll('#kakaoLoginModal a').forEach(a => {
+  const t = (a.textContent || '').trim();
+  if (t.includes('이용약관')) a.addEventListener('click', e => { e.preventDefault(); openModal('termsModal'); });
+  else if (t.includes('개인정보')) a.addEventListener('click', e => { e.preventDefault(); openModal('privacyModal'); });
+});
+
+// 추천 질문 드롭다운
+document.querySelectorAll('.suggest-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const target = document.getElementById(head.dataset.target);
+    document.querySelectorAll('.suggest').forEach(s => {
+      if (s !== target) s.classList.remove('open');
+    });
+    target.classList.toggle('open');
+  });
+});
+// 예시 질문별 '미리 작성된' 답변 (클릭 시 생성하지 않고 즉시 표시)
+const PRESET_ANSWERS = {
+  '실손보험 4세대로 갈아타면 보험료가 얼마나 줄어요?':
+    '4세대 실손은 과거 세대보다 **기본 보험료가 대체로 저렴**합니다. 1·2세대에서 갈아타면 가입 시점·나이에 따라 차이가 크지만 **월 보험료가 절반 수준까지 낮아지는 경우**도 많아요.\n\n다만 4세대는 **비급여 이용량에 따라 보험료가 할증/할인**되는 구조라, 병원을 자주 이용한다면 오히려 부담이 커질 수 있습니다. 내 의료 이용 패턴을 따져보고 결정하는 것이 좋아요.',
+  '갱신형과 비갱신형, 장기적으로 뭐가 더 저렴해요?':
+    '**갱신형**은 초기 보험료가 싸지만 갱신 때마다 올라 **납입 총액이 커지기 쉽고**, **비갱신형**은 초기 보험료가 비싼 대신 만기까지 금액이 고정됩니다.\n\n보장을 **오래(20~30년 이상) 유지할 계획이면 비갱신형**이 총액에서 유리한 경우가 많고, 짧게 가져갈 보장이라면 갱신형이 나을 수 있어요. 상품·나이별로 손익분기 시점이 달라 비교가 필요합니다.',
+  '중복 가입한 보험은 어떻게 정리해요?':
+    '먼저 **실손은 중복 보상이 안 됩니다.** 여러 개 들어도 실제 쓴 금액 내에서 비례 보상되므로 **실손은 1개만** 유지하는 게 합리적이에요.\n\n반면 **진단비·수술비 같은 정액 보장은 중복 수령**이 가능해 일부러 여러 개 두기도 합니다. 즉 *실손 중복은 정리*, *정액 보장은 필요 수준만 남기기*가 원칙입니다. 해지 전엔 보장 공백이 생기지 않도록 순서를 꼭 확인하세요.',
+  '단체실손이 있는데 개인실손도 필요할까요?':
+    '회사 **단체실손은 퇴직·이직하면 사라지는** 보장이라, 개인실손을 아예 없애기보다는 상황에 맞춰 두는 게 안전합니다.\n\n현재 둘 다 있다면 **개인실손을 \'중지\'**해두고 단체실손만 쓰다가, 퇴직 시 개인실손을 **재개**하는 *중지·재개 제도*를 활용할 수 있어요. 보험료 이중 납부를 줄이면서 평생 보장 공백도 막는 방법입니다.',
+  '5세대 실손의료보험이 4세대와 다른 점이 뭐예요?':
+    '5세대 실손은 **비급여 보장을 더 세분화·차등화**해 꼭 필요한 치료 중심으로 설계하는 방향으로 논의되고 있습니다. 자기부담률과 비급여 항목 관리가 강화되는 흐름이에요.\n\n세대가 바뀔수록 \'적게 쓰는 사람에게 유리\'한 구조로 가는 경향이 있어, **본인 의료 이용량**에 따라 유불리가 갈립니다. 세부 조건은 시행 시점에 따라 달라질 수 있으니 전환 전 비교가 중요합니다.',
+  '치매·간병보험은 꼭 가입해야 하나요?':
+    '필수는 아니지만 **고령화로 간병·요양 비용 부담이 커지면서 수요가 높아진 보장**입니다. 특히 **중증치매(LTC) 진단·간병 자금**은 가족의 경제적 부담을 크게 덜어줄 수 있어요.\n\n가입 시 **경증까지 보장되는지, 보장 기간(종신/정기)**, 갱신 여부를 꼭 확인하세요. 이미 다른 보험에서 간병 특약이 있다면 중복 여부도 점검이 필요합니다.',
+  '자녀 보험은 어떤 보장이 중요한가요?':
+    '자녀 보험은 화려한 특약보다 **실손(의료비) + 입원·수술 + 골절/화상 같은 실생활 보장**을 기본으로 챙기는 게 핵심입니다.\n\n여기에 **백혈병 등 소아암 진단비**, **배상책임(아이가 남에게 끼친 손해)** 정도를 더하면 충분한 경우가 많아요. 만기 환급형보다 **순수 보장형**이 보험료 효율이 좋고, 불필요한 저축성 특약은 빼는 것이 절약에 유리합니다.',
+  '갱신형 보험료는 매년 얼마나 오를 수 있어요?':
+    '갱신형은 **나이 증가와 위험률·손해율 변화**에 따라 갱신 주기(보통 1·3·5·10년)마다 보험료가 재산정됩니다. 인상 폭은 상품마다 다르고 **고령으로 갈수록 가파르게 오르는** 경향이 있어요.\n\n증권의 *예시 갱신보험료* 표를 보면 미래 부담을 가늠할 수 있지만 이는 확정값이 아닙니다. 장기 유지 보장이라면 비갱신형과 총액을 비교해보는 것이 좋습니다.',
+  '비갱신형이 무조건 유리한가요?':
+    '꼭 그렇진 않습니다. 비갱신형은 **보험료가 고정되어 장기적으로 예측 가능**하다는 장점이 있지만, **초기 보험료가 비싸** 단기간만 유지하면 오히려 손해일 수 있어요.\n\n보장을 **오래 유지할수록 비갱신형이 유리**해지고, 짧게 가져가거나 중간에 보장 내용을 자주 바꿀 계획이면 갱신형이 나을 수 있습니다. 가입 목적과 유지 기간을 기준으로 판단하세요.',
+};
+
+// 소질문 클릭 → AI 채팅으로 이동하지 않고, 미리 써둔 답변을 즉시 표시
+document.querySelectorAll('.suggest-item').forEach(item => {
+  item.addEventListener('click', () => toggleInlineAnswer(item));
+});
+
+function toggleInlineAnswer(item) {
+  // 이미 답변이 열려 있으면 닫기 (토글)
+  const next = item.nextElementSibling;
+  if (next && next.classList.contains('suggest-answer')) {
+    next.remove();
+    item.classList.remove('answered');
+    return;
+  }
+  const q = item.textContent.trim();
+  const answerText = PRESET_ANSWERS[q] || '잠시 후 다시 시도해주세요.';
+  const ans = document.createElement('div');
+  ans.className = 'suggest-answer';
+  ans.innerHTML = window.marked ? window.marked.parse(answerText) : answerText;
+  const more = document.createElement('button');
+  more.className = 'sa-expert';
+  more.innerHTML = '👨‍💼 전문가 상담받기';
+  more.addEventListener('click', e => { e.stopPropagation(); openDefaultExpertModal(); });
+  ans.appendChild(more);
+  item.insertAdjacentElement('afterend', ans);
+  item.classList.add('answered');
+  setTimeout(() => ans.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+// AI 보험 진단 보고서 — "내 보험으로 진단 받기" / "보고서 받아보기"
+const ctaReport = document.getElementById('ctaReport');
+const reportSample = document.getElementById('reportSample');
+if (ctaReport) ctaReport.addEventListener('click', () => openDiagModalFresh());
+if (reportSample) reportSample.addEventListener('click', () => openDiagModalFresh());
+
+// ============================================================
+// 상담 신청 헬퍼: 회원이면 자동 접수, 비회원이면 폼 띄움
+// ============================================================
+function openExpertModalWithContext(opts) {
+  // opts: { title, source, prefillMessage }
+  const modalEl = document.getElementById('expertModal');
+  const titleEl = modalEl.querySelector('h2');
+  const form = modalEl.querySelector('[data-form="expert"]');
+  const msgEl = form.querySelector('[data-field="message"]');
+  // 폼 초기 상태로 복원 (성공 화면 닫기, 폼 다시 보이기)
+  const successEl = modalEl.querySelector('[data-success="expert"]');
+  form.hidden = false;
+  if (successEl) successEl.hidden = true;
+  if (opts.title) titleEl.textContent = opts.title;
+  if (opts.source) form.dataset.source = opts.source;
+  if (opts.prefillMessage) msgEl.value = opts.prefillMessage;
+  openModal('expertModal');
+}
+
+function openClaimModalFresh() {
+  const modalEl = document.getElementById('claimModal');
+  const form = modalEl.querySelector('[data-form="claim"]');
+  const successEl = modalEl.querySelector('[data-success="claim"]');
+  form.hidden = false;
+  if (successEl) successEl.hidden = true;
+  openModal('claimModal');
+}
+
+// 자동 접수 (회원용)
+// 상담이 DB로 넘어가는 모든 자동접수 → 먼저 개인정보 동의창을 띄우고, 동의해야 전송
+function autoBookContact(source, message, successTitle) {
+  requestConsent(() => doAutoBook(source, message, successTitle));
+}
+
+// 개인정보 수집·이용 동의 모달: 체크 후 '동의하고 신청'을 눌러야 onAgree 실행
+let __consentCallback = null;
+function requestConsent(onAgree) {
+  __consentCallback = onAgree;
+  const chk = document.getElementById('consentModalCheck');
+  const sub = document.getElementById('consentSubmit');
+  if (chk) chk.checked = false;
+  if (sub) sub.disabled = true;
+  openModal('consentModal');
+}
+(function initConsentModal() {
+  const chk = document.getElementById('consentModalCheck');
+  const sub = document.getElementById('consentSubmit');
+  if (chk && sub) {
+    chk.addEventListener('change', () => { sub.disabled = !chk.checked; });
+    sub.addEventListener('click', () => {
+      if (!chk.checked) return;
+      closeModal('consentModal');
+      const cb = __consentCallback; __consentCallback = null;
+      if (typeof cb === 'function') cb();
+    });
+  }
+  // 약관은 클릭하면 새 탭으로 보이게
+  const pv = document.getElementById('consentViewPrivacy');
+  const tm = document.getElementById('consentViewTerms');
+  if (pv) pv.addEventListener('click', e => { e.preventDefault(); window.open('/privacy.html', '_blank'); });
+  if (tm) tm.addEventListener('click', e => { e.preventDefault(); window.open('/terms.html', '_blank'); });
+})();
+
+// 🧪 테스트 보고서: 가상 프로필 → 실제 AI 보고서 (주소 끝 ?test=1 일 때만 버튼 노출)
+(function initTestReport() {
+  let on = false;
+  try { on = new URLSearchParams(location.search).has('test'); } catch (e) {}
+  const fab = document.getElementById('testReportFab');
+  const gen = document.getElementById('testReportGenerate');
+  const input = document.getElementById('testReportInput');
+  if (on && fab) fab.hidden = false;
+  if (fab) fab.addEventListener('click', () => openModal('testReportModal'));
+  if (gen && input) gen.addEventListener('click', async () => {
+    const text = (input.value || '').trim();
+    if (text.length < 5) { alert('가상 보험 가입내역을 입력해주세요.'); return; }
+    gen.disabled = true; const label = gen.textContent; gen.textContent = 'AI 분석 중...';
+    try {
+      await onDiagSuccess({ 가상_보험가입내역_설명: text, note: '테스트용 가상 프로필 (API 미연동)' }, { test: true });
+      closeModal('testReportModal');
+      if (typeof showView === 'function') showView('home');
+    } catch (e) {
+      alert('생성 중 오류: ' + (e.message || e));
+    } finally {
+      gen.disabled = false; gen.textContent = label;
+    }
+  });
+})();
+
+async function doAutoBook(source, message, successTitle) {
+  try {
+    const ctx = buildMemberContext();
+    const res = await fetch(BACKEND + '/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: window.__userSession.name || '카카오 회원',
+        phone: window.__userSession.phone || '추후 카카오 SDK에서 매핑',
+        message: message || '',
+        consent: true,
+        source: source + '-자동접수',
+        auto: true,
+        chatSummary: ctx.chatSummary,   // 채팅 내역 요약
+        report: ctx.report,             // 보험 진단 레포트(JSON)
+        member: ctx.member,             // 기본 회원 정보
+      })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || '접수 실패');
+    }
+    showAutoBooked(successTitle || '상담 신청이 접수되었어요');
+  } catch (e) {
+    alert('자동 접수 실패: ' + e.message + '\n폼으로 다시 시도해주세요.');
+  }
+}
+
+function showAutoBooked(title) {
+  document.getElementById('autoBookedTitle').textContent = title;
+  openModal('autoBookedModal');
+}
+document.getElementById('autoBookedClose').addEventListener('click', () => closeModal('autoBookedModal'));
+
+// 전문가 1:1 상담받기 — 헤더·CTA·탭바
+function openDefaultExpertModal() {
+  if (window.__userSession.isLoggedIn) {
+    autoBookContact('전문가-상담', '', '전문가 상담이 신청되었어요');
+  } else {
+    openExpertModalWithContext({
+      title: '전문가 1:1 상담받기',
+      source: '전문가-상담',
+      prefillMessage: '',
+    });
+  }
+}
+
+// 보고서 안: 부족한 보장 채우기 / 보험료 절감하기
+// — renderLiveReportCard에서 카드를 다시 그릴 때도 같은 동작을 써야 해서 함수로 추출
+function onFillGapClick() {
+  const prefill = '진단 보고서에서 보장이 부족하다고 분석된 항목(예: 뇌·심장 진단비 등)을 보완하고 싶습니다. 적합한 상품 추천 부탁드립니다.';
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    autoBookContact('보고서-부족한보장채우기', prefill, '부족한 보장 채우기 신청 완료');
+  } else {
+    openExpertModalWithContext({
+      title: '부족한 보장 채우기',
+      source: '보고서-부족한보장채우기',
+      prefillMessage: prefill,
+    });
+  }
+}
+
+function onSavePremiumClick() {
+  const prefill = '진단 보고서에서 발견된 중복 보장 정리, 4세대→5세대 실손 전환 등 보험료를 줄일 수 있는 방법을 상담받고 싶습니다.';
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    autoBookContact('보고서-보험료절감', prefill, '보험료 절감 신청 완료');
+  } else {
+    openExpertModalWithContext({
+      title: '보험료 절감하기',
+      source: '보고서-보험료절감',
+      prefillMessage: prefill,
+    });
+  }
+}
+
+document.getElementById('btnFillGap').addEventListener('click', onFillGapClick);
+document.getElementById('btnSavePremium').addEventListener('click', onSavePremiumClick);
+
+// ============================================================
+// 공용 모달 컨트롤
+// ============================================================
+// 모바일은 코드로 강제하는 자동 포커스를 무시/차단해서 입력이 막히므로 모바일에선 자동 포커스 안 함
+function isMobileDevice() { return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent || ''); }
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  if (!isMobileDevice()) {
+    const firstInput = el.querySelector('input[type="text"], input[type="tel"]');
+    if (firstInput) setTimeout(() => firstInput.focus(), 300);
+  }
+}
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-close').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.dataset.close));
+});
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+
+// ============================================================
+// 휴대폰 자동 하이픈 + 폼 검증 (공용)
+// ============================================================
+function setupFormValidation(formKind, source) {
+  const form = document.querySelector(`[data-form="${formKind}"]`);
+  const success = document.querySelector(`[data-success="${formKind}"]`);
+  const nameEl = form.querySelector('[data-field="name"]');
+  const phoneEl = form.querySelector('[data-field="phone"]');
+  const msgEl = form.querySelector('[data-field="message"]');
+  const consentEl = form.querySelector('[data-field="consent"]');
+  const submitEl = document.querySelector(`[data-submit="${formKind}"]`);
+
+  phoneEl.addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length >= 7) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
+    else if (v.length >= 3) v = v.slice(0,3) + '-' + v.slice(3);
+    e.target.value = v;
+    validate();
+  });
+
+  function validate() {
+    submitEl.disabled = !(
+      nameEl.value.trim().length >= 2 &&
+      /^01\d-\d{3,4}-\d{4}$/.test(phoneEl.value.trim()) &&
+      consentEl.checked
+    );
+  }
+  [nameEl, consentEl].forEach(el => el.addEventListener('input', validate));
+  consentEl.addEventListener('change', validate);
+
+  submitEl.addEventListener('click', async () => {
+    if (submitEl.disabled) return;
+    submitEl.disabled = true;
+    const origText = submitEl.textContent;
+    submitEl.textContent = '제출 중...';
+    try {
+      // 폼에 동적으로 설정된 source가 있으면 우선 사용 (보고서 안 액션 버튼용)
+      const effectiveSource = form.dataset.source || source;
+      const ctx = buildMemberContext();
+      const res = await fetch(BACKEND + '/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameEl.value.trim(),
+          phone: phoneEl.value.trim(),
+          message: msgEl.value.trim(),
+          consent: true,
+          source: effectiveSource,
+          chatSummary: ctx.chatSummary,   // 채팅 내역 요약
+          report: ctx.report,             // 보험 진단 레포트(JSON)
+          member: ctx.member,             // 기본 회원 정보
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || '제출 실패');
+      }
+      form.hidden = true;
+      success.hidden = false;
+    } catch (e) {
+      alert('오류: ' + e.message);
+      submitEl.disabled = false;
+      submitEl.textContent = origText;
+    }
+  });
+}
+
+setupFormValidation('expert', '전문가-상담');
+setupFormValidation('claim', '담당설계사-지정');
+
+// ============================================================
+// 액션 버튼
+// (actionDiag는 아래 credit4u 연동 코드 블록에서 openDiagModalFresh로 별도 바인딩)
+// ============================================================
+// (보험금 청구는 홈 액션에서 제거되고 하단 탭바로 이동 — 탭바 핸들러에서 처리)
+
+// ============================================================
+// 내 보험 진단 — 코드에프 내보험다보여(credit4u) 실연동
+// ============================================================
+const diagState = {
+  userKey: null,    // 가입 진행 중 백엔드와 공유하는 임시 식별자
+};
+
+function showDiagStep(stepName) {
+  document.querySelectorAll('#diagModal .diag-step').forEach(el => {
+    el.hidden = (el.dataset.step !== stepName);
+  });
+  // 모달 상단 제목
+  const titleEl = document.getElementById('diagModalTitle');
+  const titles = {
+    welcome: '내 보험 진단',
+    identity: '본인 확인',
+    findid: '아이디 찾기',
+    findpwd: '비밀번호 찾기',
+    bridge: '계정 선택',
+    login: '내보험다보여 로그인',
+    register: '신규 가입 + 조회',
+    sms: 'SMS 인증',
+    loading: '조회 중',
+    error: '오류',
+  };
+  if (titles[stepName]) titleEl.textContent = titles[stepName];
+}
+
+// 모달 처음 열 때 welcome으로 초기화
+function openDiagModalFresh() {
+  // 입력 초기화
+  ['diagIdName','diagIdBirth','diagIdGender','diagIdPhone','diagLoginId','diagLoginPwd',
+   'diagRegName','diagRegBirth','diagRegPhone',
+   'diagRegId','diagRegPwd','diagRegEmail','diagSmsCode',
+   'findidSmsCode','findpwdId','findpwdRrn7','findpwdPhone','findpwdSmsCode','findpwdTempCode','findpwdNewPw'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  ['diagIdConsent','diagLoginConsent','diagRegConsent','findpwdConsent'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.checked = false;
+  });
+  ['diagIdSubmit','diagLoginSubmit','diagRegSubmit','diagSmsSubmit'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = true;
+  });
+  diagState.userKey = null;
+  diagState.identity = null;
+  diagState.codefUserKey = null;
+  // 로그인(카카오) 상태면 '카카오로 시작하기' welcome 건너뛰고 본인확인으로 직행
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    showDiagStep('identity');
+    if (!isMobileDevice()) setTimeout(() => { const el = document.getElementById('diagIdName'); if (el) el.focus(); }, 250);
+  } else {
+    showDiagStep('welcome');
+  }
+  openModal('diagModal');
+}
+
+// 액션·탭바·CTA들이 diagModal 열 때 fresh 호출하도록 교체
+document.getElementById('actionDiag').removeEventListener('click', () => {});
+// (위 1줄은 안전을 위한 더미)
+
+// data-go 버튼 (bridge / login / register / 뒤로가기)
+document.querySelectorAll('#diagModal [data-go]').forEach(btn => {
+  btn.addEventListener('click', () => showDiagStep(btn.dataset.go));
+});
+
+// 진단 모달 안 카카오 로그인
+// TODO: 카카오 SDK 연결 → 로그인 성공 후 우리 백엔드 (예: /api/auth/check) 호출
+//       회원이면 → showDiagStep('login') (저장된 credit4u 정보로 자동 채우거나 입력)
+//       신규면 → showDiagStep('register')
+// 현재는 SDK 미연결로 placeholder 단계 (bridge step)로 이동해 사용자가 임시 선택
+// 카카오 인증 후 credit4u(신용정보원) 단계로 진행
+function proceedDiagAfterLogin() {
+  showDiagStep('identity');
+  setTimeout(() => { const el = document.getElementById('diagIdName'); if (el) el.focus(); }, 250);
+}
+
+document.getElementById('diagKakaoLogin').addEventListener('click', () => {
+  if (window.__userSession.isLoggedIn) {
+    proceedDiagAfterLogin();
+  } else {
+    // 카카오 로그인(리다이렉트) → 돌아오면 진단 모달이 자동으로 다시 열림
+    startKakaoLogin({ run: 'diag' });
+  }
+});
+
+// ----- Step 0.4: 본인 확인 → 가입여부 자동 판별 -----
+const diagIdName = document.getElementById('diagIdName');
+const diagIdBirth = document.getElementById('diagIdBirth');
+const diagIdGender = document.getElementById('diagIdGender');
+const diagIdPhone = document.getElementById('diagIdPhone');
+const diagIdTelecom = document.getElementById('diagIdTelecom');
+const diagIdConsent = document.getElementById('diagIdConsent');
+const diagIdSubmit = document.getElementById('diagIdSubmit');
+
+diagIdBirth.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+  if (e.target.value.length === 6 && diagIdGender) diagIdGender.focus();
+  validateDiagId();
+});
+diagIdGender.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 1);
+  validateDiagId();
+});
+diagIdPhone.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11);
+  validateDiagId();
+});
+function validateDiagId() {
+  diagIdSubmit.disabled = !(
+    diagIdName.value.trim().length >= 2 &&
+    diagIdBirth.value.length === 6 &&
+    /^[1-4]$/.test(diagIdGender.value) &&
+    /^\d{10,11}$/.test(diagIdPhone.value) &&
+    diagIdConsent.checked
+  );
+}
+[diagIdName, diagIdConsent].forEach(el => el.addEventListener('input', validateDiagId));
+diagIdConsent.addEventListener('change', validateDiagId);
+
+// 본인확인 정보를 신규가입 폼에 미리 채워줌 (가입 시 재입력 불필요)
+function prefillRegisterFromIdentity() {
+  if (!diagState.identity) return;
+  const { name, birth, phone, telecom } = diagState.identity;
+  if (diagRegName) diagRegName.value = name;
+  if (diagRegBirth) diagRegBirth.value = birth;
+  if (diagRegPhone) diagRegPhone.value = phone;
+  if (diagRegTelecom) diagRegTelecom.value = telecom;
+  if (typeof validateDiagReg === 'function') validateDiagReg();
+}
+
+diagIdSubmit.addEventListener('click', async () => {
+  if (diagIdSubmit.disabled) return;
+  diagState.identity = {
+    name: diagIdName.value.trim(),
+    birth: diagIdBirth.value,
+    gender: diagIdGender.value,
+    phone: diagIdPhone.value,
+    telecom: diagIdTelecom.value,
+  };
+  prefillRegisterFromIdentity();
+  // 본인인증 = 아이디찾기(find-id) 호출 → SMS 발송 + (인증 후) 가입여부 판별 + 아이디 카톡 발송
+  diagIdSubmit.disabled = true;
+  const orig = diagIdSubmit.textContent; diagIdSubmit.textContent = '인증번호 발송 중...';
+  showDiagStep('loading');
+  document.getElementById('diagLoadingTitle').textContent = '본인인증 요청 중...';
+  document.getElementById('diagLoadingSub').textContent = '휴대폰으로 SMS 인증번호를 보내고 있어요';
+  try {
+    const id = diagState.identity;
+    const res = await fetch(BACKEND + '/api/codef/credit4u-findid-start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: id.name, birthDate: id.birth, genderDigit: id.gender, phoneNo: id.phone, telecom: id.telecom })
+    });
+    const data = await res.json();
+    diagState.codefUserKey = data.userKey || diagState.codefUserKey; // 추가인증에 다시 보낼 세션키
+    if (data.status === 'PENDING_SMS') {
+      show('findidStart', false); show('findidSms', true); show('findidResult', false); show('findidNotReg', false);
+      showDiagStep('findid');
+      setTimeout(() => findidSmsCode.focus(), 200);
+    } else if (data.status === 'OK') {
+      // 드물게 SMS 없이 즉시 응답
+      handleFindidResult(data);
+    } else {
+      showDiagError((data.message || data.error || '본인인증 요청 실패') + '\n\n잠시 후 다시 시도하거나, 정보를 확인해주세요.');
+    }
+  } catch (e) {
+    showDiagError('본인인증 오류: ' + e.message);
+  } finally {
+    diagIdSubmit.disabled = false; diagIdSubmit.textContent = orig;
+  }
+});
+
+// 아이디찾기(=본인인증) 결과 처리: 가입여부로 분기
+function handleFindidResult(data) {
+  if (data.registered) {
+    show('findidSms', false); show('findidStart', false); show('findidNotReg', false); show('findidResult', true);
+    document.getElementById('findidMasked').textContent = data.maskedId ? ('확인된 아이디: ' + data.maskedId) : '';
+  } else {
+    // 미가입 → 신규가입 안내
+    show('findidSms', false); show('findidStart', false); show('findidResult', false); show('findidNotReg', true);
+  }
+}
+
+// ----- Step 1a: 기존 회원 로그인 -----
+const diagLoginId = document.getElementById('diagLoginId');
+const diagLoginPwd = document.getElementById('diagLoginPwd');
+const diagLoginConsent = document.getElementById('diagLoginConsent');
+const diagLoginSubmit = document.getElementById('diagLoginSubmit');
+
+function validateDiagLogin() {
+  diagLoginSubmit.disabled = !(
+    diagLoginId.value.trim().length >= 4 &&
+    diagLoginPwd.value.length >= 4 &&
+    diagLoginConsent.checked
+  );
+}
+[diagLoginId, diagLoginPwd, diagLoginConsent].forEach(el =>
+  el.addEventListener('input', validateDiagLogin));
+diagLoginConsent.addEventListener('change', validateDiagLogin);
+
+diagLoginSubmit.addEventListener('click', async () => {
+  if (diagLoginSubmit.disabled) return;
+  showDiagStep('loading');
+  document.getElementById('diagLoadingTitle').textContent = '로그인 및 조회 중...';
+  document.getElementById('diagLoadingSub').textContent = '내보험다보여에서 본인 명의 보험을 가져오고 있어요. 10~30초 걸려요';
+  try {
+    const res = await fetch(BACKEND + '/api/codef/credit4u-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: diagLoginId.value.trim(),
+        password: diagLoginPwd.value,
+      })
+    });
+    const data = await res.json();
+    if (data.status === 'OK') {
+      diagState.userKey = data.userKey;
+      await onDiagSuccess(data.data);
+    } else {
+      const code = data.codef?.result?.code;
+      // 회원이 아님(CF-13301) → 자동으로 신규가입 화면으로 (본인정보 prefill)
+      if (code === 'CF-13301') {
+        prefillRegisterFromIdentity();
+        const sub2 = document.querySelector('#diagModal [data-step="register"] .modal-sub');
+        if (sub2) sub2.innerHTML = '내보험다보여에 <strong>가입된 계정이 없어</strong> 신규가입을 진행할게요. 새 ID·비밀번호·이메일만 입력하면 됩니다.';
+        showDiagStep('register');
+        setTimeout(() => diagRegId && diagRegId.focus(), 200);
+        return;
+      }
+      const codefMsg = (data.codef?.result?.message || '').replace(/\+/g, ' ');
+      throw new Error(codefMsg || data.hint || data.error || '조회 실패');
+    }
+  } catch (e) {
+    showDiagError(e.message);
+  }
+});
+
+// 로그인 화면의 '신규가입하기' 링크 → 신규가입 화면(본인정보 prefill)
+const diagGoRegisterEl = document.getElementById('diagGoRegister');
+if (diagGoRegisterEl) diagGoRegisterEl.addEventListener('click', () => {
+  prefillRegisterFromIdentity();
+  showDiagStep('register');
+  setTimeout(() => diagRegId && diagRegId.focus(), 200);
+});
+
+// ============================================================
+// 아이디 찾기 (find-id) — 본인확인 정보 + SMS 인증
+// ============================================================
+function show(id, on) { const el = document.getElementById(id); if (el) el.hidden = !on; }
+function needIdentity() {
+  if (!diagState.identity) { alert('먼저 본인확인 정보를 입력해주세요.'); showDiagStep('identity'); return false; }
+  return true;
+}
+
+document.getElementById('diagFindIdBtn').addEventListener('click', () => {
+  if (!needIdentity()) return;
+  show('findidStart', true); show('findidSms', false); show('findidResult', false);
+  showDiagStep('findid');
+});
+
+const findidSmsCode = document.getElementById('findidSmsCode');
+const findidVerifyBtn = document.getElementById('findidVerifyBtn');
+findidSmsCode.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 8);
+  findidVerifyBtn.disabled = !/^\d{4,8}$/.test(e.target.value);
+});
+
+document.getElementById('findidSendBtn').addEventListener('click', async () => {
+  if (!needIdentity()) return;
+  const btn = document.getElementById('findidSendBtn');
+  btn.disabled = true; const t = btn.textContent; btn.textContent = '발송 중...';
+  try {
+    const id = diagState.identity;
+    const res = await fetch(BACKEND + '/api/codef/credit4u-findid-start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: id.name, birthDate: id.birth, genderDigit: id.gender, phoneNo: id.phone, telecom: id.telecom })
+    });
+    const data = await res.json();
+    diagState.codefUserKey = data.userKey || diagState.codefUserKey;
+    if (data.status === 'PENDING_SMS') {
+      show('findidStart', false); show('findidSms', true);
+      setTimeout(() => findidSmsCode.focus(), 150);
+    } else if (data.status === 'OK') {
+      handleFindidResult(data);
+    } else {
+      alert('본인인증 실패: ' + (data.message || data.error || '알 수 없는 오류'));
+    }
+  } catch (e) { alert('오류: ' + e.message); }
+  finally { btn.disabled = false; btn.textContent = t; }
+});
+
+findidVerifyBtn.addEventListener('click', async () => {
+  if (findidVerifyBtn.disabled) return;
+  findidVerifyBtn.disabled = true; const t = findidVerifyBtn.textContent; findidVerifyBtn.textContent = '인증 중...';
+  try {
+    const res = await fetch(BACKEND + '/api/codef/credit4u-findid-continue', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ smsCode: findidSmsCode.value, userKey: diagState.codefUserKey })
+    });
+    const data = await res.json();
+    if (data.status === 'OK') {
+      handleFindidResult(data);
+    } else {
+      alert('인증 실패: ' + (data.message || data.error || '다시 시도해주세요'));
+      findidVerifyBtn.disabled = false;
+    }
+  } catch (e) { alert('오류: ' + e.message); findidVerifyBtn.disabled = false; }
+  finally { findidVerifyBtn.textContent = t; }
+});
+document.getElementById('findidToLoginBtn').addEventListener('click', () => {
+  showDiagStep('login');
+  setTimeout(() => diagLoginId && diagLoginId.focus(), 150);
+});
+document.getElementById('findidToPwdBtn').addEventListener('click', () => {
+  if (typeof openFindpwd === 'function') openFindpwd();
+});
+document.getElementById('findidToRegBtn').addEventListener('click', () => {
+  prefillRegisterFromIdentity();
+  showDiagStep('register');
+  setTimeout(() => diagRegId && diagRegId.focus(), 150);
+});
+
+// ============================================================
+// 비밀번호 찾기 (change-pwd) — 아이디+주민번호뒤7+새비번 → SMS → 이메일 임시비번
+// ============================================================
+const findpwdId = document.getElementById('findpwdId');
+const findpwdRrn7 = document.getElementById('findpwdRrn7');
+const findpwdPhone = document.getElementById('findpwdPhone');
+const findpwdTelecom = document.getElementById('findpwdTelecom');
+const findpwdConsent = document.getElementById('findpwdConsent');
+const findpwdStartBtn = document.getElementById('findpwdStartBtn');
+
+findpwdRrn7.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 7); validateFindpwd(); });
+findpwdPhone.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11); validateFindpwd(); });
+function validateFindpwd() {
+  findpwdStartBtn.disabled = !(
+    findpwdId.value.trim().length >= 4 &&
+    findpwdRrn7.value.length === 7 &&
+    /^\d{10,11}$/.test(findpwdPhone.value) &&
+    findpwdConsent.checked
+  );
+}
+[findpwdId, findpwdConsent].forEach(el => el.addEventListener('input', validateFindpwd));
+findpwdConsent.addEventListener('change', validateFindpwd);
+
+// 비밀번호 찾기 진입 시 본인확인의 휴대폰·통신사 자동 채움
+function openFindpwd() {
+  if (!needIdentity()) return;
+  if (diagState.identity) {
+    if (findpwdPhone) findpwdPhone.value = diagState.identity.phone || '';
+    if (findpwdTelecom) findpwdTelecom.value = diagState.identity.telecom || '0';
+  }
+  validateFindpwd();
+  show('findpwdForm', true); show('findpwdSms', false); show('findpwdReset', false); show('findpwdDone', false);
+  showDiagStep('findpwd');
+  setTimeout(() => { const el = document.getElementById('findpwdId'); if (el) el.focus(); }, 150);
+}
+document.getElementById('diagFindPwdBtn').addEventListener('click', openFindpwd);
+
+const findpwdSmsCode = document.getElementById('findpwdSmsCode');
+const findpwdSmsBtn = document.getElementById('findpwdSmsBtn');
+findpwdSmsCode.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 8); findpwdSmsBtn.disabled = !/^\d{4,8}$/.test(e.target.value); });
+
+findpwdStartBtn.addEventListener('click', async () => {
+  if (findpwdStartBtn.disabled || !needIdentity()) return;
+  findpwdStartBtn.disabled = true; const t = findpwdStartBtn.textContent; findpwdStartBtn.textContent = '발송 중...';
+  try {
+    const id = diagState.identity;
+    const res = await fetch(BACKEND + '/api/codef/credit4u-changepwd-start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      // newPassword 없이 호출 → 임시비밀번호 발급만 (변경 X)
+      body: JSON.stringify({
+        name: id.name, birthDate: id.birth, rrnBack7: findpwdRrn7.value,
+        id: findpwdId.value.trim(),
+        phoneNo: findpwdPhone.value || id.phone,
+        telecom: findpwdTelecom.value || id.telecom,
+      })
+    });
+    const data = await res.json();
+    diagState.codefUserKey = data.userKey || diagState.codefUserKey;
+    if (data.status === 'PENDING') {
+      show('findpwdForm', false); show('findpwdSms', true);
+      setTimeout(() => findpwdSmsCode.focus(), 150);
+    } else {
+      alert('비밀번호찾기 시작 실패: ' + (data.message || data.error || '알 수 없는 오류'));
+      findpwdStartBtn.disabled = false;
+    }
+  } catch (e) { alert('오류: ' + e.message); findpwdStartBtn.disabled = false; }
+  finally { findpwdStartBtn.textContent = t; }
+});
+
+findpwdSmsBtn.addEventListener('click', async () => {
+  if (findpwdSmsBtn.disabled) return;
+  findpwdSmsBtn.disabled = true; const t = findpwdSmsBtn.textContent; findpwdSmsBtn.textContent = '인증 중...';
+  try {
+    const res = await fetch(BACKEND + '/api/codef/credit4u-changepwd-continue', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ smsCode: findpwdSmsCode.value, userKey: diagState.codefUserKey })
+    });
+    const data = await res.json();
+    diagState.codefUserKey = data.userKey || diagState.codefUserKey;
+    // SMS 인증 성공 → 임시비밀번호가 카톡(문자)으로 발송됨 → 임시비번+새비번 입력해 재설정
+    if (data.status === 'OK' || (data.status === 'PENDING' && data.need === 'tempPassword')) {
+      show('findpwdSms', false); show('findpwdReset', true);
+      setTimeout(() => { const el = document.getElementById('findpwdTempCode'); if (el) el.focus(); }, 150);
+    } else if (data.status === 'PENDING') {
+      alert('추가 인증이 필요합니다(' + (data.need || '') + '). 잠시 후 다시 시도해주세요.');
+      findpwdSmsBtn.disabled = false;
+    } else {
+      alert('SMS 인증 실패: ' + (data.message || data.error || '다시 시도해주세요'));
+      findpwdSmsBtn.disabled = false;
+    }
+  } catch (e) { alert('오류: ' + e.message); findpwdSmsBtn.disabled = false; }
+  finally { findpwdSmsBtn.textContent = t; }
+});
+
+// 임시비번 + 새비번 입력 → 재설정
+const findpwdTempCode = document.getElementById('findpwdTempCode');
+const findpwdNewPw = document.getElementById('findpwdNewPw');
+const findpwdResetBtn = document.getElementById('findpwdResetBtn');
+function validateFindpwdReset() {
+  const idn = diagState.identity || {};
+  const ctx = {
+    id: findpwdId.value.trim(),
+    birth6: idn.birth || '',
+    phone: findpwdPhone.value,
+    rrnBack: findpwdRrn7.value,
+    rrnFront: (idn.birth || '') + (idn.gender || ''),
+    rrnFull: (idn.birth || '') + (findpwdRrn7.value || ''),
+  };
+  const pwOk = applyRules('findpwdNewPw', pwRules(findpwdNewPw.value, ctx));
+  findpwdResetBtn.disabled = !(findpwdTempCode.value.trim().length >= 4 && pwOk);
+}
+// 카톡 메시지 전체를 붙여넣어도 임시비밀번호 토큰만 추출
+function extractTempPw(text) {
+  // 한글/공백/줄바꿈을 구분자로 토큰 분리 → 각 토큰에서 보이는 ASCII만 남김
+  const tokens = String(text)
+    .replace(/[가-힣㄰-㆏]/g, ' ')   // 한글 → 공백
+    .split(/\s+/)
+    .map(t => t.replace(/[^\x21-\x7E]/g, ''))
+    .filter(t => t.length >= 6);
+  if (tokens.length) {
+    // 영문+숫자가 섞인 토큰 우선(가장 비밀번호다움), 없으면 가장 긴 토큰
+    const mixed = tokens.filter(t => /[A-Za-z]/.test(t) && /[0-9]/.test(t));
+    const pick = (mixed.length ? mixed : tokens).sort((a, b) => b.length - a.length)[0];
+    // 양끝의 감싸는 문장부호만 제거(괄호·대괄호·중괄호·마침표). !,#,$ 등 비번 특수문자는 보존.
+    return pick.replace(/^[\[\](){}.]+|[\[\](){}.]+$/g, '') || pick;
+  }
+  // 후보 없으면 전체에서 ASCII만
+  return String(text).replace(/[^\x21-\x7E]/g, '');
+}
+findpwdTempCode.addEventListener('paste', e => {
+  const text = (e.clipboardData || window.clipboardData)?.getData('text') || '';
+  if (text) {
+    e.preventDefault();
+    findpwdTempCode.value = extractTempPw(text);
+    validateFindpwdReset();
+  }
+});
+findpwdTempCode.addEventListener('input', e => {
+  // 직접 타이핑/수정 시에도 한글·공백 제거(붙여넣기 외 경로 대비)
+  e.target.value = e.target.value.replace(/[^\x21-\x7E]/g, '');
+  validateFindpwdReset();
+});
+findpwdNewPw.addEventListener('input', validateFindpwdReset);
+
+async function changepwdContinue(payload) {
+  const res = await fetch(BACKEND + '/api/codef/credit4u-changepwd-continue', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...payload, userKey: diagState.codefUserKey })
+  });
+  return res.json();
+}
+
+findpwdResetBtn.addEventListener('click', async () => {
+  if (findpwdResetBtn.disabled) return;
+  findpwdResetBtn.disabled = true; const t = findpwdResetBtn.textContent; findpwdResetBtn.textContent = '재설정 중...';
+  const temp = findpwdTempCode.value.trim();
+  const np = findpwdNewPw.value;
+  try {
+    // 1라운드: 임시비번 + 새비번 전달
+    let data = await changepwdContinue({ tempPassword: temp, newPassword: np });
+    // CODEF가 단계를 나눠 요구하면 한 번 더 (새비번 단계)
+    if (data.status === 'PENDING') {
+      data = await changepwdContinue({ tempPassword: temp, newPassword: np });
+    }
+    if (data.status === 'OK' && data.changed) {
+      show('findpwdReset', false); show('findpwdDone', true);
+    } else if (data.status === 'OK' && data.tempIssued) {
+      alert('임시비밀번호는 발급됐지만 새 비밀번호 변경이 완료되지 않았어요. 임시비번을 다시 확인해 입력해주세요.');
+      findpwdResetBtn.disabled = false;
+    } else {
+      alert('비밀번호 재설정 실패: ' + (data.message || data.error || '임시비밀번호/새 비밀번호를 확인해주세요'));
+      findpwdResetBtn.disabled = false;
+    }
+  } catch (e) { alert('오류: ' + e.message); findpwdResetBtn.disabled = false; }
+  finally { findpwdResetBtn.textContent = t; }
+});
+
+document.getElementById('findpwdToLoginBtn').addEventListener('click', () => {
+  // 아이디 + 방금 재설정한 새 비밀번호 자동 입력
+  if (diagLoginId) diagLoginId.value = findpwdId.value.trim();
+  if (diagLoginPwd) diagLoginPwd.value = findpwdNewPw.value;
+  if (diagLoginConsent) diagLoginConsent.checked = true;
+  const sub = document.querySelector('#diagModal [data-step="login"] .modal-sub');
+  if (sub) sub.innerHTML = '방금 재설정한 <strong>새 비밀번호</strong>로 로그인합니다. (아이디·비번 자동 입력됨)';
+  showDiagStep('login');
+  if (typeof validateDiagLogin === 'function') validateDiagLogin();
+});
+
+// ----- Step 1b: 신규 가입 정보 입력 -----
+const diagRegName = document.getElementById('diagRegName');
+const diagRegBirth = document.getElementById('diagRegBirth');
+const diagRegPhone = document.getElementById('diagRegPhone');
+const diagRegTelecom = document.getElementById('diagRegTelecom');
+const diagRegId = document.getElementById('diagRegId');
+const diagRegPwd = document.getElementById('diagRegPwd');
+const diagRegEmail = document.getElementById('diagRegEmail');
+const diagRegConsent = document.getElementById('diagRegConsent');
+const diagRegSubmit = document.getElementById('diagRegSubmit');
+
+// 숫자만 입력 (생년월일·휴대폰)
+diagRegBirth.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+  validateDiagReg();
+});
+diagRegPhone.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11);
+  validateDiagReg();
+});
+
+// ===== 신용정보원 비밀번호/아이디 규칙 체크 (실시간) =====
+const PW_SPECIALS = "[]!@#$%^&*?_~+=`|(){}:;\"'<>,./\\-";
+function pwRules(pw, ctx) {
+  ctx = ctx || {};
+  let rep = false, seq = false;
+  for (let i = 0; i + 2 < pw.length; i++) {
+    if (pw[i] === pw[i + 1] && pw[i + 1] === pw[i + 2]) rep = true;
+    const a = pw.charCodeAt(i), b = pw.charCodeAt(i + 1), c = pw.charCodeAt(i + 2);
+    if ((b - a === 1 && c - b === 1) || (a - b === 1 && b - c === 1)) seq = true;
+  }
+  const hasL = /[A-Za-z]/.test(pw), hasD = /[0-9]/.test(pw);
+  const hasS = [...pw].some(c => PW_SPECIALS.indexOf(c) >= 0);
+  const onlyOk = pw.length > 0 && [...pw].every(c => /[A-Za-z0-9]/.test(c) || PW_SPECIALS.indexOf(c) >= 0);
+  const b6 = ctx.birth6 || '';
+  const bad = [ctx.id, b6, '19' + b6, '20' + b6, ctx.phone, ctx.rrnFront, ctx.rrnBack, ctx.rrnFull]
+    .filter(v => v && String(v).length >= 4);
+  const personalOk = pw.length > 0 && !bad.some(v => pw === v || pw.indexOf(v) >= 0);
+  return {
+    len: pw.length >= 9 && pw.length <= 20,
+    combo: hasL && hasD && hasS && onlyOk,
+    repeat: pw.length > 0 && !rep,
+    seq: pw.length > 0 && !seq,
+    personal: personalOk,
+  };
+}
+function idRules(id) {
+  return {
+    len: id.length >= 6 && id.length <= 12,
+    start: /^[A-Za-z]/.test(id),
+    chars: id.length > 0 && /^[A-Za-z0-9]+$/.test(id),
+  };
+}
+function applyRules(forId, results) {
+  const list = document.querySelector('.rule-list[data-for="' + forId + '"]');
+  if (list) list.querySelectorAll('.rule-item').forEach(row => row.classList.toggle('ok', !!results[row.dataset.rule]));
+  return Object.values(results).every(Boolean);
+}
+
+function validateDiagReg() {
+  const ctx = { id: diagRegId.value.trim(), birth6: diagRegBirth.value, phone: diagRegPhone.value };
+  const idOk = applyRules('diagRegId', idRules(diagRegId.value.trim()));
+  const pwOk = applyRules('diagRegPwd', pwRules(diagRegPwd.value, ctx));
+  diagRegSubmit.disabled = !(
+    diagRegName.value.trim().length >= 2 &&
+    diagRegBirth.value.length === 6 &&
+    /^\d{10,11}$/.test(diagRegPhone.value) &&
+    idOk && pwOk &&
+    /^[^@]+@[^@]+\.[^@]+$/.test(diagRegEmail.value.trim()) &&
+    diagRegConsent.checked
+  );
+}
+[diagRegName, diagRegId, diagRegBirth, diagRegPhone, diagRegPwd, diagRegEmail, diagRegConsent].forEach(el =>
+  el.addEventListener('input', validateDiagReg));
+diagRegConsent.addEventListener('change', validateDiagReg);
+
+diagRegSubmit.addEventListener('click', async () => {
+  if (diagRegSubmit.disabled) return;
+  showDiagStep('loading');
+  document.getElementById('diagLoadingTitle').textContent = '가입 요청 중...';
+  document.getElementById('diagLoadingSub').textContent = '본인 휴대폰으로 SMS 인증번호를 보냈어요. 곧 입력창이 나옵니다';
+  try {
+    const res = await fetch(BACKEND + '/api/codef/credit4u-register-start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: diagRegName.value.trim(),
+        birthDate: diagRegBirth.value,
+        phoneNo: diagRegPhone.value,
+        telecom: diagRegTelecom.value,
+        id: diagRegId.value.trim(),
+        password: diagRegPwd.value,
+        email: diagRegEmail.value.trim(),
+        authMethod: '0',  // SMS
+      })
+    });
+    const data = await res.json();
+    if (data.status === 'PENDING_SMS') {
+      diagState.userKey = data.userKey;
+      showDiagStep('sms');
+      setTimeout(() => document.getElementById('diagSmsCode').focus(), 200);
+    } else if (data.status === 'REGISTERED') {
+      diagState.userKey = data.userKey;
+      await onDiagSuccess(data.data);
+    } else {
+      throw new Error(data.message || data.error || '가입 요청 실패');
+    }
+  } catch (e) {
+    showDiagError(e.message);
+  }
+});
+
+// ----- Step 2: SMS 인증 -----
+const diagSmsCode = document.getElementById('diagSmsCode');
+const diagSmsSubmit = document.getElementById('diagSmsSubmit');
+
+diagSmsCode.addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+  diagSmsSubmit.disabled = !/^\d{4,8}$/.test(e.target.value);
+});
+
+diagSmsSubmit.addEventListener('click', async () => {
+  if (diagSmsSubmit.disabled) return;
+  showDiagStep('loading');
+  document.getElementById('diagLoadingTitle').textContent = 'SMS 인증 + 조회 중...';
+  document.getElementById('diagLoadingSub').textContent = '가입을 마치고 본인 명의 보험을 가져오고 있어요';
+  try {
+    const res = await fetch(BACKEND + '/api/codef/credit4u-register-continue', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userKey: diagState.userKey,
+        smsCode: diagSmsCode.value,
+      })
+    });
+    const data = await res.json();
+    if (data.status === 'OK') {
+      await onDiagSuccess(data.data);
+    } else if (data.status === 'PENDING_NEXT') {
+      throw new Error('추가 인증이 필요합니다: ' + (data.method || '') + ' — 본 POC는 SMS만 지원합니다.');
+    } else {
+      throw new Error(data.message || data.error || 'SMS 인증 실패');
+    }
+  } catch (e) {
+    showDiagError(e.message);
+  }
+});
+
+// ----- 공통: 성공 시 → 분석 + 채팅 표시 -----
+async function onDiagSuccess(insuranceData, opts = {}) {
+  const isTest = !!opts.test;
+  document.getElementById('diagLoadingTitle').textContent = 'AI 분석 중...';
+  document.getElementById('diagLoadingSub').textContent = '보장 점수·진행바·확인 필요 항목을 시각화하고 있어요';
+
+  console.log('[credit4u 응답 원본]', insuranceData);
+
+  try {
+    const rawJsonStr = JSON.stringify(insuranceData ?? {}, null, 2).slice(0, 12000);
+
+    // ✨ JSON 형식으로 답하라고 명확히 요청 — 카드 렌더링용
+    const question = `당신은 보험 진단 AI입니다. 아래 신용정보원(내보험다보여) 본인 명의 보험 가입내역을 분석하고, 반드시 아래 [출력 형식]의 JSON으로만 답하세요. 마크다운, 추가 설명, "참고용" 안내 문구 등 그 어떤 부가 텍스트도 절대 넣지 마세요.
+
+[입력 — 보험 가입내역 원본]
+\`\`\`json
+${rawJsonStr}
+\`\`\`
+
+[출력 형식 — 이 형식 그대로 JSON만]
+\`\`\`json
+{
+  "overallScore": 0~100 정수 (보장 충분도 종합 점수),
+  "scoreComment": "점수에 대한 한 줄 코멘트 (예: 일부 보장이 부족합니다 / 보장이 매우 충실합니다 / 가입된 보험이 없습니다 등)",
+  "joinedInsurances": [
+    {"insurer": "보험사명", "product": "상품명", "type": "실손/암/종합 등", "monthlyPremium": 월보험료원_정수_또는_null}
+  ],
+  "currentMonthlyTotal": 현재_월_보험료_총합_정수_원,
+  "savingsMonthly": 동일_보장_유지하며_아낄수있는_월_금액_정수_원,
+  "savingsBasis": "절감 근거 한 줄 (예: 수술비 중복 보장 정리 + 4세대→5세대 실손 전환)",
+  "coverageAnalysis": [
+    {"category": "실손의료비", "level": "충분|보통|보완|부족", "percent": 0~100},
+    {"category": "암 진단비", "level": "...", "percent": ...},
+    {"category": "뇌·심장", "level": "...", "percent": ...},
+    {"category": "수술비", "level": "...", "percent": ...},
+    {"category": "사망·장해", "level": "...", "percent": ...}
+  ],
+  "alerts": [
+    {"type": "red|yellow|green", "title": "짧은 제목", "detail": "한 줄 부연 설명"}
+  ],
+  "summary": "전체 분석 한두 문장 요약 (채팅으로 따로 표시될 텍스트)"
+}
+\`\`\`
+
+규칙:
+- joinedInsurances: 입력 데이터에서 실제 가입된 보험을 모두 나열. 월보험료가 데이터에 없으면 한국 시장 평균으로 합리적으로 추정해 monthlyPremium에 넣기.
+- currentMonthlyTotal: joinedInsurances의 monthlyPremium 합(추정 포함).
+- savingsMonthly: **가장 중요**. 현재 보장 수준은 그대로 유지한다는 전제로, 중복 보장 정리·갱신형 조정·실손 세대전환·과도한 특약 정리 등으로 줄일 수 있는 월 보험료를 원 단위 정수로 보수적으로 추정. 절감 여지가 거의 없으면 0. 과장 금지.
+- savingsBasis: savingsMonthly의 핵심 근거 한 줄. savingsMonthly가 0이면 "현재도 효율적으로 구성되어 있습니다".
+- alerts는 최대 4건. type=red(부족·위험), yellow(중복·갱신부담), green(개선 기회).
+- 가입 보험이 없으면 overallScore=0, scoreComment="가입된 보험이 없습니다", joinedInsurances=[], currentMonthlyTotal=0, savingsMonthly=0, savingsBasis="가입된 보험이 없습니다", coverageAnalysis 5개 카테고리는 모두 level="부족", percent=0, alerts에 가입 권고 1건.
+- percent는 보장 충분도. 0=전혀없음, 100=업계 권장 충족.
+- 반드시 \`\`\`json ... \`\`\` 코드 블록으로 감싸서 답하세요.`;
+
+    const res = await fetch(BACKEND + '/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || '분석 실패');
+    }
+    const data = await res.json();
+    const answerText = data.answer || '';
+
+    // JSON 추출
+    const jsonMatch = answerText.match(/```json\s*([\s\S]*?)\s*```/) || answerText.match(/(\{[\s\S]*\})/);
+    let reportData = null;
+    if (jsonMatch) {
+      try {
+        reportData = JSON.parse(jsonMatch[1]);
+      } catch (e) {
+        console.warn('[onDiagSuccess] JSON 파싱 실패:', e);
+      }
+    }
+
+    closeModal('diagModal');
+
+    if (reportData) {
+      window.__lastReport = reportData;
+      window.__hasDiagnosed = true;
+      renderLiveReportCard(reportData);
+      // 진단 완료 → 리드를 바로 DB(구글시트)로 전송 (테스트 모드면 저장 안 함)
+      if (!isTest) pushLeadToDb('진단완료-자동리드', '본인 보험 진단 완료 (자동 수집 리드)');
+      addBubble('ai', `${isTest ? '🧪 **테스트 보고서**가 생성됐어요 (가상 프로필 기준, DB 미저장).' : '✅ 진단이 완료됐어요.'} 아래 **AI 보험 진단 보고서** 영역에서 결과를 확인하세요.${reportData.summary ? '\n\n**한줄 요약** · ' + reportData.summary : ''}`, true);
+      conversation.push({ role: 'user', text: '[본인 명의 보험 가입내역 자동 조회 완료]' });
+      conversation.push({ role: 'assistant', text: '진단 보고서 생성 완료. ' + (reportData.summary || '') });
+    } else {
+      addBubble('user', '✅ 내보험다보여로 본인 명의 보험 조회 완료');
+      const bubble = addBubble('ai', '');
+      if (window.marked) bubble.innerHTML = window.marked.parse(answerText);
+      else bubble.textContent = answerText;
+      conversation.push({ role: 'user', text: '[본인 명의 보험 가입내역 자동 조회 완료]' });
+      conversation.push({ role: 'assistant', text: answerText });
+    }
+  } catch (e) {
+    let msg = e.message || '';
+    if (/503|UNAVAILABLE|high demand|overloaded/i.test(msg)) {
+      msg = 'AI 서버가 일시적으로 트래픽이 많아요. 잠시 후 다시 시도해주세요.';
+    } else if (/429|RESOURCE_EXHAUSTED/i.test(msg)) {
+      msg = 'AI 사용량 한도에 도달했어요. 잠시 후 다시 시도하시거나 Gemini API 키 한도를 확인해주세요.';
+    }
+    if (isTest) alert('테스트 보고서 생성 실패: ' + msg);
+    else showDiagError('조회는 성공했지만 AI 분석에 실패했어요: ' + msg);
+  }
+}
+
+// ----- 보고서 카드 in-place 갱신 (페이지의 #reportCard를 실제 분석 결과로 교체) -----
+function renderLiveReportCard(reportData, opts = {}) {
+  const isExample = !!opts.example;
+  const reportCardEl = document.getElementById('reportCard');
+  if (!reportCardEl) return null;
+
+  const num = (n) => Number(n) || 0;
+  const won = (n) => num(n).toLocaleString('ko-KR');
+  const esc = escapeHtml;
+
+  const score = Math.max(0, Math.min(100, num(reportData.overallScore)));
+  const scoreColor = score >= 80 ? '#13a463' : score >= 60 ? '#f59f00' : '#e03131';
+  // 목표 점수: 프론트에서 산출 (Gemini 프롬프트는 불변)
+  const goalScore = Math.min(100, score + Math.round((100 - score) / 2));
+  const showGoal = goalScore - score >= 3;
+  const scoreComment = reportData.scoreComment || '';
+  // 점수 밑 진단 한 줄: summary의 첫 문장만 표시 (Gemini 프롬프트는 불변, 프론트에서만 다듬음)
+  const firstSentence = (s) => {
+    const t = String(s || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+    if (!t) return '';
+    const m = t.match(/^[\s\S]*?[.!?。](?=\s|$)/);
+    return (m ? m[0] : t).trim();
+  };
+  const diagText = firstSentence(reportData.summary) || scoreComment || '';
+
+  const savings = Math.max(0, Math.round(num(reportData.savingsMonthly)));
+  const curTotal = Math.max(0, Math.round(num(reportData.currentMonthlyTotal)));
+  const savingsBasis = reportData.savingsBasis || '';
+  const joined = Array.isArray(reportData.joinedInsurances) ? reportData.joinedInsurances : [];
+  const coverage = Array.isArray(reportData.coverageAnalysis) ? reportData.coverageAnalysis : [];
+  const alerts = Array.isArray(reportData.alerts) ? reportData.alerts : [];
+
+  const uname = (window.__userSession && window.__userSession.name) ? String(window.__userSession.name) : '회원';
+  const CIRC = 326.7;
+  const dash = (v) => (CIRC * (1 - Math.max(0, Math.min(100, v)) / 100)).toFixed(1);
+
+  const catIcon = (c) => {
+    const s = String(c || '');
+    if (/실손/.test(s)) return '🏥';
+    if (/암/.test(s)) return '🎗️';
+    if (/뇌|심장|심혈/.test(s)) return '🧠';
+    if (/수술/.test(s)) return '🧑‍⚕️';
+    if (/사망|장해|생명/.test(s)) return '🛡️';
+    return '📋';
+  };
+  const badgeCls = (lv) => lv === '충분' ? 'b-ok' : lv === '부족' ? 'b-low' : 'b-mid';
+  const findEmoji = (t) => t === 'red' ? '⚠️' : t === 'green' ? '💡' : '🔄';
+
+  // 핵심 보장 공백(부담 박스): 보장 percent가 가장 낮은 카테고리
+  let gapItem = null;
+  coverage.forEach(it => { if (gapItem === null || num(it.percent) < num(gapItem.percent)) gapItem = it; });
+
+  const ringHtml = `
+    <div class="r-ring">
+      <svg width="118" height="118" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#eef1f5" stroke-width="11"/>
+        ${showGoal ? `<circle cx="60" cy="60" r="52" fill="none" stroke="#bff0d4" stroke-width="11" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${dash(goalScore)}"/>` : ''}
+        <circle cx="60" cy="60" r="52" fill="none" stroke="${scoreColor}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${dash(score)}"/>
+      </svg>
+      <div class="ctr"><div class="n" style="color:${scoreColor}">${score}</div><div class="m">/ 100점</div></div>
+    </div>`;
+
+  const scoreMetaHtml = showGoal ? `
+    <div class="r-score-meta">
+      <div class="lab">지금 보완하면</div>
+      <div class="r-goalpill">🎯 ${goalScore}점까지 올릴 수 있어요</div>
+      <div class="r-leg">
+        <span><i style="background:${scoreColor}"></i>현재 ${score}점</span>
+        <span><i style="background:#5ee0a0"></i>목표 ${goalScore}점</span>
+      </div>
+    </div>` : `
+    <div class="r-score-meta">
+      <div class="lab">종합 평가</div>
+      <div class="r-goalpill">✅ 보장이 충실해요</div>
+    </div>`;
+
+  // 보험료 진단: 현재 월 보험료 vs 그중 절감 가능액 — 막대 2개 비교
+  const afterTotal = Math.max(0, curTotal - savings);
+  const savePctNum = curTotal > 0 ? Math.round(savings / curTotal * 100) : 0;
+  const saveBarW = curTotal > 0 ? Math.max(savings > 0 ? 5 : 0, Math.min(100, savings / curTotal * 100)) : 0;
+  const premiumBarHtml = curTotal > 0 ? `
+    <div class="r-card r-prem">
+      <div class="r-sec-h"><div class="t">💰 내 보험료 진단</div>${savings > 0 ? `<div class="s">월 ${won(savings)}원 절감 가능</div>` : ''}</div>
+      <div class="r-bar-row">
+        <div class="r-bar-top"><span class="r-bar-lab">현재 월 보험료</span><span class="r-bar-num">${won(curTotal)}원</span></div>
+        <div class="r-bar-track"><div class="r-bar-fill cur" style="width:100%"></div></div>
+      </div>
+      <div class="r-bar-row">
+        <div class="r-bar-top"><span class="r-bar-lab">절감 가능 보험료 ${savings > 0 ? `<span class="r-bar-pct">−${savePctNum}%</span>` : ''}</span><span class="r-bar-num save">${savings > 0 ? '−' + won(savings) + '원' : '0원'}</span></div>
+        <div class="r-bar-track"><div class="r-bar-fill save" style="width:${saveBarW}%"></div></div>
+      </div>
+      <div class="r-prem-foot">${savings > 0 ? `절감하면 월 <b>${won(afterTotal)}원</b> · 연 <b>${won(savings * 12)}원</b> 절약` : '현재 보험료 구성이 효율적이에요 👍'}</div>
+      ${(savings > 0 && savingsBasis) ? `<div class="r-prem-basis">💡 ${esc(savingsBasis)}</div>` : ''}
+    </div>` : (savings > 0 ? `
+    <div class="r-card r-prem">
+      <div class="r-sec-h"><div class="t">💰 내 보험료 진단</div></div>
+      <div class="r-prem-foot">월 <b>${won(savings)}원</b> 절감 가능 · 연 <b>${won(savings * 12)}원</b> 절약</div>
+      ${savingsBasis ? `<div class="r-prem-basis">💡 ${esc(savingsBasis)}</div>` : ''}
+    </div>` : '');
+
+  // 보장 공백: 부족/보완 카테고리 목록 (없으면 안내)
+  const gapList = coverage.filter(it => it.level === '부족' || it.level === '보완');
+  const gapHtml = `
+    <div class="r-card">
+      <div class="r-sec-h"><div class="t">🩺 보장 공백</div>${gapList.length ? `<div class="s">${gapList.length}개 항목</div>` : ''}</div>
+      ${gapList.length ? gapList.map(it => {
+        const cls = it.level === '부족' ? 'low' : 'mid';
+        const pct = Math.max(0, Math.min(100, num(it.percent)));
+        return `
+        <div class="r-gap-row ${cls}">
+          <span class="r-gap-ico">${catIcon(it.category)}</span>
+          <span class="r-gap-body"><b>${esc(it.category || '')}</b><span>현재 보장 ${pct}% · ${it.level === '부족' ? '우선 보완 권장' : '보완 검토 권장'}</span></span>
+          <span class="r-gap-badge ${cls}">${esc(it.level || '')}</span>
+        </div>`;
+      }).join('') : '<div class="r-gap-none">현재 큰 보장 공백은 없어요 👍</div>'}
+    </div>`;
+
+  const polHtml = joined.length ? `
+    <div class="r-card">
+      <div class="r-sec-h"><div class="t">내 가입 보험 ${joined.length}건</div><div class="s">${curTotal ? '현재 월 ' + won(curTotal) + '원' : ''}</div></div>
+      ${joined.map(it => `
+        <div class="r-pol">
+          <div class="nm">${esc(((it.insurer || '') + ' ' + (it.product || '')).trim() || '보험')}<small>${esc(it.type || '')}</small></div>
+          <div class="pr">${it.monthlyPremium ? won(it.monthlyPremium) + '원' : '—'}</div>
+        </div>`).join('')}
+    </div>` : '';
+
+  const catsHtml = coverage.length ? `
+    <div class="r-card">
+      <div class="r-sec-h"><div class="t">📋 카테고리별 보장 분석</div></div>
+      <div class="r-cats">
+        ${coverage.map(it => `
+          <div class="r-cat ${it.level === '부족' ? 'alert' : ''}">
+            <div class="ic">${catIcon(it.category)}</div>
+            <div class="nm">${esc(it.category || '')}</div>
+            <span class="r-badge ${badgeCls(it.level)}">${esc(it.level || '')}</span>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  const findsHtml = alerts.length ? `
+    <div class="r-sec-h" style="margin-top:2px"><div class="t">🔍 확인이 필요한 ${alerts.length}가지</div><div class="s">중요도순</div></div>
+    ${alerts.map(a => `
+      <div class="r-find ${a.type === 'red' ? 'crit' : ''}">
+        <div class="head"><div class="em">${findEmoji(a.type)}</div><div>
+          <div class="ti">${esc(a.title || '')}</div>
+          ${a.detail ? `<div class="ds">${esc(a.detail)}</div>` : ''}
+        </div></div>
+        <button class="r-minicta" type="button" data-rcta="finding">이 항목, 1:1로 확인하기 <span class="arr">›</span></button>
+      </div>`).join('')}` : '';
+
+  const trustHtml = `
+    <div class="r-trust">
+      <div class="q">상담받으면 보험 가입을 강요받나요?</div>
+      <div class="a">아니요. 이 진단과 상담은 <b>무료</b>이며, 가입 없이 궁금증만 해결하셔도 됩니다. 분석은 회원님이 보유한 보험 데이터를 기준으로 계산했습니다.</div>
+      <div class="r-chips"><span class="r-chip">✓ 신청 3초</span><span class="r-chip">✓ 가입 권유 없음</span><span class="r-chip">✓ 비대면 상담</span></div>
+    </div>`;
+
+  // 결과창 하단 플로팅 버튼 내용 — 분석 결과 기반 동적 문구 (기존 인라인 CTA 카드 대체)
+  const ctaLineA = (savings > 0 ? '月 ' + won(savings) + '원 절감' : '내 보장 점검') + (showGoal ? ' + 핵심 공백 보완' : '');
+  const ctaLineB = showGoal ? (score + '점 → ' + goalScore + '점으로 올리기') : '전문가와 1:1로 점검하기';
+  const ctaBtnLabel = showGoal ? '점수 올리기' : '상담받기';
+  const floatScoreInner = `
+    <span class="fs-inner">
+      <span class="fs-txt"><span class="fs-a">${esc(ctaLineA)}</span><span class="fs-b">${esc(ctaLineB)}</span></span>
+      <span class="fs-go">${esc(ctaBtnLabel)} ›</span>
+    </span>`;
+
+  reportCardEl.classList.add('live-report', 'rpt2-host');
+  reportCardEl.innerHTML = `
+    <div class="rpt2">
+      ${isExample ? '<div style="display:inline-block;background:#eef2ff;color:#6366f1;font-size:11px;font-weight:800;border-radius:99px;padding:4px 11px;margin-bottom:10px;">예시 보고서</div>' : ''}
+      <div class="r-score">
+        <div class="r-eyebrow">${isExample ? '나의 보험 점수' : esc(uname) + '님의 보험 점수'}</div>
+        <div class="r-score-top">${ringHtml}${scoreMetaHtml}</div>
+        ${diagText ? `<div class="r-diag">${esc(diagText)}</div>` : ''}
+      </div>
+      ${premiumBarHtml}
+      ${gapHtml}
+      ${polHtml}
+      ${catsHtml}
+      ${findsHtml}
+      ${trustHtml}
+    </div>
+    ${isExample ? '' : `
+    <div class="report-share-btns">
+      <button class="report-action-btn invite" id="btnReportInvite">
+        <span class="ico">🎁</span>
+        <span class="lbl">주변 사람 무료 분석</span>
+      </button>
+      <button class="report-action-btn shareres" id="btnReportShare">
+        <span class="ico">📤</span>
+        <span class="lbl">결과 공유하기</span>
+      </button>
+    </div>`}
+  `;
+
+  // 버튼 재연결 (기존 핸들러 그대로 — JS/Gemini/Codef 로직 불변)
+  const inviteBtn = reportCardEl.querySelector('#btnReportInvite');
+  const shareResBtn = reportCardEl.querySelector('#btnReportShare');
+  if (inviteBtn) inviteBtn.addEventListener('click', shareInvite);
+  if (shareResBtn) shareResBtn.addEventListener('click', shareMyResult);
+
+  // 보고서 내 상담 유도 버튼
+  //  - 예시(홈) 보고서: 2지선다(내 보험 진단받기 / 상담부터 받기) = openCheckFlow
+  //  - 실제 결과 보고서: 기존 전문가 상담 흐름(개인정보 동의창 포함)
+  reportCardEl.querySelectorAll('[data-rcta="finding"]').forEach(b => {
+    b.addEventListener('click', () => {
+      if (isExample) { openCheckFlow(); return; }
+      if (typeof onFillGapClick === 'function') onFillGapClick();
+      else openDefaultExpertModal();
+    });
+  });
+
+  // 예시 보고서는 홈에 그대로 두는 미리보기 → 헤더/플로팅/스크롤을 건드리지 않음
+  if (isExample) return reportCardEl;
+
+  const reportSampleBtn = document.getElementById('reportSample');
+  if (reportSampleBtn) reportSampleBtn.textContent = '다시 진단하기 ›';
+
+  const diagHero = document.getElementById('actionDiag');
+  if (diagHero) diagHero.style.display = 'none';
+
+  // 결과창에서는 하단 플로팅 버튼을 '불필요한 보험료' → '점수 올리기'로 교체
+  const fcHome = document.getElementById('floatCheck');
+  if (fcHome) fcHome.hidden = true;
+  const fcScore = document.getElementById('floatScore');
+  if (fcScore) { fcScore.innerHTML = floatScoreInner; fcScore.hidden = false; }
+
+  setTimeout(() => reportCardEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  return reportCardEl;
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function showDiagError(msg) {
+  showDiagStep('error');
+  const el = document.getElementById('diagErrorMsg');
+  if (el) el.textContent = msg || '알 수 없는 오류가 발생했어요.';
+}
+
+// ============================================================
+// 추가 이벤트 핸들러: 헤더 / CTA / 카카오 sticky / 내보험진단 액션
+// ============================================================
+document.getElementById('actionDiag').addEventListener('click', () => openDiagModalFresh());
+
+const btnExpertEl = document.getElementById('btnExpert');
+if (btnExpertEl) btnExpertEl.addEventListener('click', openDefaultExpertModal);
+
+const ctaExpertEl = document.getElementById('ctaExpert');
+if (ctaExpertEl) ctaExpertEl.addEventListener('click', openDefaultExpertModal);
+
+const btnKakaoEl = document.getElementById('btnKakao');
+if (btnKakaoEl) btnKakaoEl.addEventListener('click', () => {
+  if (window.__userSession.isLoggedIn) openModal('expertConnectModal');
+  else startKakaoLogin(null); // 그냥 카카오로 로그인/가입
+});
+
+// ============================================================
+// 카카오 즉시 신청 (expertModal / claimModal 내부 카카오 버튼)
+// 비회원이면 카카오 로그인(리다이렉트) 후 돌아와서 자동 접수
+// ============================================================
+async function kakaoSignupAndBook(modalId, source, successTitle) {
+  if (window.__userSession.isLoggedIn) {
+    closeModal(modalId);
+    await autoBookContact(source, '', successTitle);
+  } else {
+    closeModal(modalId);
+    startKakaoLogin({ run: 'autobook', args: { source, successTitle } });
+  }
+}
+
+document.getElementById('expertKakaoBtn').addEventListener('click', () =>
+  kakaoSignupAndBook('expertModal', '전문가-상담-카카오', '전문가 상담이 신청되었어요')
+);
+
+document.getElementById('claimKakaoBtn').addEventListener('click', () =>
+  kakaoSignupAndBook('claimModal', '담당설계사-지정-카카오', '담당 설계사 지정 완료')
+);
+
+// 카카오 로그인 모달 버튼 (혹시 열렸을 때) — 실제 카카오 로그인으로
+document.getElementById('kakaoLoginBtn').addEventListener('click', () => {
+  closeModal('kakaoLoginModal');
+  startKakaoLogin(null);
+});
+
+// ============================================================
+// 회원의 '내 전문가' 탭 → 전문가 연결 확인 모달
+// 버튼 클릭 시 자동 접수 + 성공 모달
+// ============================================================
+document.getElementById('expertConnectBtn').addEventListener('click', async () => {
+  closeModal('expertConnectModal');
+  await autoBookContact('내전문가-탭', '내 전문가 탭에서 전문가 연결 요청', '전문가 배정이 완료되었어요');
+});
+
+// ============================================================
+// 하단 탭바 핸들러 (홈 / AI / 내 보험 / 보험금 청구)
+// - 홈 탭   → 홈 뷰 표시
+// - AI 탭   → 채팅 뷰 표시(상단 채팅창 대체)
+// - 내 보험 → 회원·진단여부에 따라 진단 모달 / 결과표
+// - 보험금 청구 → 회원이면 자동 접수, 비회원이면 청구 모달
+// ============================================================
+function showView(name) {
+  const home = document.getElementById('homeView');
+  const chat = document.getElementById('chatView');
+  const mine = document.getElementById('myInsuranceView');
+  if (!home || !chat) return;
+  home.hidden = (name !== 'home');
+  chat.hidden = (name !== 'chat');
+  if (mine) mine.hidden = (name !== 'myinsurance');
+  document.body.classList.toggle('view-mi', name === 'myinsurance');
+}
+
+// 내 보험 탭 화면 렌더 (회원/비회원 분기)
+function renderMyInsurance() {
+  const loggedIn = !!(window.__userSession && window.__userSession.isLoggedIn);
+  const guest = document.getElementById('miGuest');
+  const member = document.getElementById('miMember');
+  const acc = document.getElementById('miAccount');
+  if (guest) guest.hidden = loggedIn;
+  if (member) member.hidden = !loggedIn;
+  if (acc) acc.hidden = true; // 로그아웃/탈퇴는 기본 숨김 (계정 관리 클릭 시 노출)
+  if (loggedIn) {
+    const nm = document.getElementById('miName');
+    const sub = document.getElementById('miSub');
+    if (nm) nm.textContent = (window.__userSession.name || '회원') + '님';
+    if (sub) sub.textContent = window.__userSession.email || window.__userSession.phone || '보닥터 회원';
+  }
+}
+
+// ============================================================
+// 홈 플로팅 버튼 '혹시 불필요하게 내고 있는 보험료는 없을까?'
+//  → 2지선다 모달 (내 보험 진단받기 / 상담부터 받기) — 둘 다 DB로 전송
+// ============================================================
+// 조용히 리드를 DB(구글시트)로 전송 (성공 모달 없이)
+async function pushLeadToDb(source, message) {
+  try {
+    const ctx = buildMemberContext();
+    await fetch(BACKEND + '/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: window.__userSession.name || '카카오 회원',
+        phone: window.__userSession.phone || '추후 카카오 SDK에서 매핑',
+        message: message || '',
+        consent: true,
+        source: source,
+        auto: true,
+        chatSummary: ctx.chatSummary,
+        report: ctx.report,
+        member: ctx.member,
+      })
+    });
+  } catch (e) { console.warn('[pushLeadToDb] 실패', e); }
+}
+
+// 불필요 보험료 버튼: 비회원이면 카카오 로그인 단계 먼저, 회원이면 바로 2지선다
+function showCheckStep(step) {
+  document.querySelectorAll('#checkModal .check-step').forEach(el => {
+    el.hidden = (el.dataset.cstep !== step);
+  });
+}
+function openCheckFlow() {
+  const loggedIn = !!(window.__userSession && window.__userSession.isLoggedIn);
+  showCheckStep(loggedIn ? 'choice' : 'login');
+  openModal('checkModal');
+}
+
+const floatCheckEl = document.getElementById('floatCheck');
+if (floatCheckEl) floatCheckEl.addEventListener('click', openCheckFlow);
+
+// 결과창 플로팅 '점수 올리기' → 기존 보험료 절감/상담 흐름 (회원=동의창→DB, 비회원=폼)
+const floatScoreEl = document.getElementById('floatScore');
+if (floatScoreEl) floatScoreEl.addEventListener('click', () => {
+  if (typeof onSavePremiumClick === 'function') onSavePremiumClick();
+  else openDefaultExpertModal();
+});
+
+const checkKakaoBtnEl = document.getElementById('checkKakaoBtn');
+if (checkKakaoBtnEl) checkKakaoBtnEl.addEventListener('click', () => {
+  closeModal('checkModal');
+  // 로그인 후 다시 checkModal(2지선다)로 복귀
+  startKakaoLogin({ run: 'opencheck' });
+});
+
+const checkDiagEl = document.getElementById('checkDiag');
+if (checkDiagEl) checkDiagEl.addEventListener('click', () => {
+  closeModal('checkModal');
+  // 진단 완료 시 자동으로 DB 전송 (onDiagSuccess에서 pushLeadToDb 호출)
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    openDiagModalFresh();
+  } else {
+    startKakaoLogin({ run: 'diag' });
+  }
+});
+
+const checkTalkEl = document.getElementById('checkTalk');
+if (checkTalkEl) checkTalkEl.addEventListener('click', () => {
+  closeModal('checkModal');
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    autoBookContact('홈-불필요보험료-상담부터', '홈 화면 "불필요한 보험료" 배너에서 상담 신청', '상담 신청이 접수되었어요');
+  } else {
+    startKakaoLogin({ run: 'autobook', args: { source: '홈-불필요보험료-상담부터', successTitle: '상담 신청이 접수되었어요' } });
+  }
+});
+
+// 본인인증 화면의 '본인인증 없이 진단 받기' — 인증 없이 동의 후 상담 신청으로 연결
+const diagTalkFirstEl = document.getElementById('diagTalkFirst');
+if (diagTalkFirstEl) diagTalkFirstEl.addEventListener('click', () => {
+  closeModal('diagModal');
+  if (window.__userSession && window.__userSession.isLoggedIn) {
+    autoBookContact('내보험진단-본인인증없이', '본인인증 없이 진단(상담) 신청', '상담 신청이 접수되었어요');
+  } else {
+    startKakaoLogin({ run: 'autobook', args: { source: '내보험진단-본인인증없이', successTitle: '상담 신청이 접수되었어요' } });
+  }
+});
+
+// ===== 내 보험 탭 화면 버튼들 =====
+// 비회원: 카카오로 시작 → 로그인 후 내 보험 탭으로 복귀
+const miKakaoBtn = document.getElementById('miKakaoBtn');
+if (miKakaoBtn) miKakaoBtn.addEventListener('click', () => startKakaoLogin({ run: 'gotomy' }));
+
+// 회원: 내 보험 진단하기 → 본인인증 화면으로 직행('본인인증 없이 진단 받기' 버튼 포함)
+const miDiagBtn = document.getElementById('miDiagBtn');
+if (miDiagBtn) miDiagBtn.addEventListener('click', () => {
+  if (window.__userSession && window.__userSession.isLoggedIn) openDiagModalFresh();
+  else startKakaoLogin({ run: 'diag' });
+});
+
+// 계정 관리 토글 (로그아웃/회원 탈퇴는 클릭해야 노출)
+const miGearBtn = document.getElementById('miGear');
+if (miGearBtn) miGearBtn.addEventListener('click', () => {
+  const acc = document.getElementById('miAccount');
+  if (acc) acc.hidden = !acc.hidden;
+});
+
+// 로그아웃
+const miLogoutBtn = document.getElementById('miLogout');
+if (miLogoutBtn) miLogoutBtn.addEventListener('click', () => {
+  logoutUser();
+  renderMyInsurance();
+});
+
+// 회원 탈퇴 (이 기기의 로컬 데이터 삭제)
+const miWithdrawBtn = document.getElementById('miWithdraw');
+if (miWithdrawBtn) miWithdrawBtn.addEventListener('click', () => {
+  if (!confirm('정말 탈퇴하시겠어요?\n이 기기에 저장된 로그인 정보와 진단 기록이 삭제됩니다.')) return;
+  try { localStorage.removeItem('bodoctor_session'); } catch (e) {}
+  try { localStorage.removeItem('bodoctor_intent'); } catch (e) {}
+  logoutUser();
+  window.__hasDiagnosed = false;
+  alert('탈퇴 처리되었습니다. 그동안 이용해 주셔서 감사합니다.');
+  renderMyInsurance();
+});
+
+document.querySelectorAll('.tabbar .tab').forEach(tabBtn => {
+  tabBtn.addEventListener('click', () => {
+    const tab = tabBtn.dataset.tab;
+    // 활성 상태 갱신
+    document.querySelectorAll('.tabbar .tab').forEach(t => t.classList.remove('active'));
+    tabBtn.classList.add('active');
+
+    if (tab === 'home') {
+      showView('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (tab === 'ai') {
+      showView('chat');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!isMobileDevice()) setTimeout(() => { askInput && askInput.focus(); }, 200);
+    } else if (tab === 'myinsurance') {
+      showView('myinsurance');
+      renderMyInsurance();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (tab === 'claim') {
+      showView('home');
+      if (window.__userSession.isLoggedIn) {
+        autoBookContact('담당설계사-지정', '', '담당 설계사 지정 완료');
+      } else {
+        openClaimModalFresh();
+      }
+    }
+  });
+});
+
+// ============================================================
+// PWA — 앱 설치 (안드로이드: beforeinstallprompt / 아이폰: 홈화면 추가 안내)
+// ============================================================
+let __deferredInstall = null;
+const btnInstallEl = document.getElementById('btnInstall');
+function isStandalone() {
+  return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+}
+function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent); }
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  __deferredInstall = e;
+  if (btnInstallEl && !isStandalone()) btnInstallEl.hidden = false;
+});
+window.addEventListener('appinstalled', () => {
+  __deferredInstall = null;
+  if (btnInstallEl) btnInstallEl.hidden = true;
+});
+
+if (btnInstallEl) {
+  // 아이폰 Safari는 beforeinstallprompt가 없으므로, 미설치 상태면 버튼을 바로 노출
+  if (isIOS() && !isStandalone()) btnInstallEl.hidden = false;
+
+  btnInstallEl.addEventListener('click', async () => {
+    if (__deferredInstall) {
+      __deferredInstall.prompt();
+      try { await __deferredInstall.userChoice; } catch (e) {}
+      __deferredInstall = null;
+      btnInstallEl.hidden = true;
+    } else if (isIOS()) {
+      openModal('iosInstallModal');
+    } else {
+      openModal('iosInstallModal'); // 안드로이드에서 prompt 미발생 시에도 안내
+    }
+  });
+}
+
+// 서비스워커 등록 (설치 가능 조건)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+// ============================================================
+// 홈 예시 보고서 — 새 디자인을 홈에 미리보기로 표시 (3개 질문 칸 위)
+//  · 상담 연결 버튼은 2지선다(내 보험 진단받기 / 상담부터 받기)로 연결
+//  · 실제 진단이 끝나면 renderLiveReportCard(real)가 덮어씀
+// ============================================================
+const EXAMPLE_REPORT = {
+  overallScore: 65,
+  scoreComment: '실손과 암 보장은 잘 갖추어져 있으나, 뇌·심장 질환 보장이 전혀 없고 CI보험의 보험료 부담이 다소 높습니다.',
+  summary: '실손과 암 보장은 잘 갖추어져 있으나, 뇌·심장 질환 보장이 전혀 없고 CI보험의 보험료 부담이 다소 높습니다.',
+  savingsMonthly: 108000,
+  savingsBasis: 'CI보험 사망보장 일부 감액 + 3세대 실손의 4세대 전환 검토',
+  currentMonthlyTotal: 353600,
+  joinedInsurances: [
+    { insurer: '현대해상', product: '굿앤굿 착한실손', type: '3세대 실손의료비', monthlyPremium: 18600 },
+    { insurer: '메리츠화재', product: '올바른 암보험', type: '암 진단·수술', monthlyPremium: 47000 },
+    { insurer: '한화생명', product: 'The드림 CI보험', type: '중대질병·사망', monthlyPremium: 88000 },
+    { insurer: '삼성생명', product: '행복한 연금보험', type: '연금(저축성)', monthlyPremium: 200000 },
+    { insurer: 'DB손해보험', product: '자동차보험', type: '다이렉트', monthlyPremium: null }
+  ],
+  coverageAnalysis: [
+    { category: '실손', level: '보통', percent: 70 },
+    { category: '암', level: '보통', percent: 72 },
+    { category: '뇌·심장', level: '부족', percent: 0 },
+    { category: '수술비', level: '보완', percent: 45 },
+    { category: '사망·장해', level: '보통', percent: 62 }
+  ],
+  alerts: [
+    { type: 'red', title: '뇌·심장 진단비 공백', detail: '뇌혈관·허혈성 심장질환 진단비가 전혀 없습니다. 가장 우선 보완 대상이에요.' },
+    { type: 'yellow', title: 'CI보험 보험료 부담 (월 88,000원)', detail: '보장은 유지하며 보험료만 낮추는 재설계 여지가 있어요.' },
+    { type: 'yellow', title: '3세대 실손 갱신 부담', detail: '향후 인상 추이 점검과 4세대 전환 득실을 따져봐야 해요.' },
+    { type: 'green', title: '화재·자녀 보장 미흡', detail: '유자녀 가정인데 주택화재·자녀 관련 보장이 없어 보완 검토를 권합니다.' }
+  ]
+};
+try {
+  if (!window.__hasDiagnosed) renderLiveReportCard(EXAMPLE_REPORT, { example: true });
+} catch (e) { console.warn('[예시 보고서] 렌더 실패', e); }
+
+// ============================================================
+// 페이지 로드: 카카오 로그인 리다이렉트(?code=) 처리
+// ============================================================
+handleKakaoRedirect();
+
+</script>
+</body>
+</html>
